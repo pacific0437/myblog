@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://pacific0437.github.io//github/atom.xml" rel="self"/>
-  <link href="http://pacific0437.github.io//github/"/>
-  <updated>2014-10-29T11:44:24+08:00</updated>
-  <id>http://pacific0437.github.io//github/</id>
+  <link href="http://pacific0437.github.io//myblog/atom.xml" rel="self"/>
+  <link href="http://pacific0437.github.io//myblog/"/>
+  <updated>2014-10-29T11:47:32+08:00</updated>
+  <id>http://pacific0437.github.io//myblog/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
     
@@ -15,18 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[AnotherTest]]></title>
-    <link href="http://pacific0437.github.io//github/blog/2014/10/29/anothertest/"/>
+    <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/anothertest/"/>
     <updated>2014-10-29T11:34:30+08:00</updated>
-    <id>http://pacific0437.github.io//github/blog/2014/10/29/anothertest</id>
+    <id>http://pacific0437.github.io//myblog/blog/2014/10/29/anothertest</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Glad to Do It]]></title>
-    <link href="http://pacific0437.github.io//github/blog/2014/10/29/glad-to-do-it/"/>
+    <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/glad-to-do-it/"/>
     <updated>2014-10-29T10:50:18+08:00</updated>
-    <id>http://pacific0437.github.io//github/blog/2014/10/29/glad-to-do-it</id>
+    <id>http://pacific0437.github.io//myblog/blog/2014/10/29/glad-to-do-it</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
