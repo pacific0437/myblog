@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-10-29T15:20:19+08:00</updated>
+  <updated>2014-10-29T15:21:42+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -43,10 +43,10 @@
 <p>The title is derived <strong>from</strong> the filename so you&rsquo;ll likely want to change that. This is very similar to the post yaml except it doesn&rsquo;t include categories, and you can toggle sharing and comments or <strong>remove</strong> the footer altogether. If you don&rsquo;t want to show a date on your page, just remove it from the yaml.</p>
 
 <p><code>
-  ＊cd octopress          
-  ＊gem install bundler  
-  ＊bundle install  
-  ＊rake install  
+  cd octopress          
+  gem install bundler  
+  bundle install  
+  rake install  
 </code></p>
 
 <p>this is a <a href="http://www.baidu.com" title="with the title">baidu&rsquo;s link</a></p>
