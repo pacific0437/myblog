@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://pacific0437.github.io//myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io//myblog/"/>
-  <updated>2014-10-29T13:49:03+08:00</updated>
+  <updated>2014-10-29T13:50:02+08:00</updated>
   <id>http://pacific0437.github.io//myblog/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -50,8 +50,9 @@ for(;a&lt;42;a++){
 <p>this is a <a href="http://www.baidu.com" title="with the title">baidu link</a></p>
 
 <p>ajdsakfkja
-1231232sdfd
-会当作是空格吗？？？</p>
+1231232sdfd</p>
+
+<p>会当作是空格吗？？？</p>
 ]]></content>
   </entry>
   
