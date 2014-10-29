@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://pacific0437.github.io//myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io//myblog/"/>
-  <updated>2014-10-29T13:18:07+08:00</updated>
+  <updated>2014-10-29T13:24:38+08:00</updated>
   <id>http://pacific0437.github.io//myblog/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/agoodquestion/"/>
     <updated>2014-10-29T13:17:59+08:00</updated>
     <id>http://pacific0437.github.io//myblog/blog/2014/10/29/agoodquestion</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>The title is derived from the filename so you&rsquo;ll likely want to change that. This is very similar to the post yaml except it doesn&rsquo;t include categories, and you can toggle sharing and comments or remove the footer altogether. If you don&rsquo;t want to show a date on your page, just remove it from the yaml.</p>
 ]]></content>
   </entry>
   
