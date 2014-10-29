@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://pacific0437.github.io//myblog/atom.xml" rel="self"/>
-  <link href="http://pacific0437.github.io//myblog/"/>
-  <updated>2014-10-29T14:23:29+08:00</updated>
-  <id>http://pacific0437.github.io//myblog/</id>
+  <title><![CDATA[Ashley's Blog]]></title>
+  <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
+  <link href="http://pacific0437.github.io/myblog/"/>
+  <updated>2014-10-29T15:07:28+08:00</updated>
+  <id>http://pacific0437.github.io/myblog/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Ashley Yang]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[AGoodQuestion]]></title>
-    <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/agoodquestion/"/>
+    <link href="http://pacific0437.github.io/myblog/blog/2014/10/29/agoodquestion/"/>
     <updated>2014-10-29T13:17:59+08:00</updated>
-    <id>http://pacific0437.github.io//myblog/blog/2014/10/29/agoodquestion</id>
+    <id>http://pacific0437.github.io/myblog/blog/2014/10/29/agoodquestion</id>
     <content type="html"><![CDATA[<h1>THis is the Title</h1>
 
 <h2>this is H2</h2>
@@ -42,15 +42,19 @@
 
 <p>The title is derived <strong>from</strong> the filename so you&rsquo;ll likely want to change that. This is very similar to the post yaml except it doesn&rsquo;t include categories, and you can toggle sharing and comments or <strong>remove</strong> the footer altogether. If you don&rsquo;t want to show a date on your page, just remove it from the yaml.</p>
 
-<p><code>
-git clone git://github.com/imathis/octopress.git octopress
-cd octopress
-gem install bundler
-bundle install
-rake install
-</code></p>
+<p>`
+git clone git://github.com/imathis/octopress.git octopress</p>
 
-<p>this is a <a href="http://www.baidu.com" title="with the title">baidu link</a></p>
+<p>cd octopress</p>
+
+<p>gem install bundler</p>
+
+<p>bundle install</p>
+
+<p>rake install
+`</p>
+
+<p>this is a <a href="http://www.baidu.com" title="with the title">baidu&rsquo;s link</a></p>
 
 <p>ajdsakfkja
 1231232sdfd</p>
@@ -61,27 +65,27 @@ rake install
   
   <entry>
     <title type="html"><![CDATA[GoodQuestion]]></title>
-    <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/goodquestion/"/>
+    <link href="http://pacific0437.github.io/myblog/blog/2014/10/29/goodquestion/"/>
     <updated>2014-10-29T11:51:07+08:00</updated>
-    <id>http://pacific0437.github.io//myblog/blog/2014/10/29/goodquestion</id>
+    <id>http://pacific0437.github.io/myblog/blog/2014/10/29/goodquestion</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[AnotherTest]]></title>
-    <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/anothertest/"/>
+    <link href="http://pacific0437.github.io/myblog/blog/2014/10/29/anothertest/"/>
     <updated>2014-10-29T11:34:30+08:00</updated>
-    <id>http://pacific0437.github.io//myblog/blog/2014/10/29/anothertest</id>
+    <id>http://pacific0437.github.io/myblog/blog/2014/10/29/anothertest</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Glad to Do It]]></title>
-    <link href="http://pacific0437.github.io//myblog/blog/2014/10/29/glad-to-do-it/"/>
+    <link href="http://pacific0437.github.io/myblog/blog/2014/10/29/glad-to-do-it/"/>
     <updated>2014-10-29T10:50:18+08:00</updated>
-    <id>http://pacific0437.github.io//myblog/blog/2014/10/29/glad-to-do-it</id>
+    <id>http://pacific0437.github.io/myblog/blog/2014/10/29/glad-to-do-it</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
