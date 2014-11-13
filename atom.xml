@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-10-29T15:52:52+08:00</updated>
+  <updated>2014-11-13T17:04:48+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Isomorphic Javascript]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/2014/11/13/isomorphic/"/>
+    <updated>2014-11-13T16:57:32+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/2014/11/13/isomorphic</id>
+    <content type="html"><![CDATA[<h5>Isomorphic Javascript</h5>
+
+<p><a href="https://github.com/kriasoft/react-starter-kit">https://github.com/kriasoft/react-starter-kit</a></p>
+
+<p>听上去高大上的样子，学一学！！
+  以后更新学习心得</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AGoodQuestion]]></title>
