@@ -11,34 +11,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://pacific0437.github.io/myblog/blog/2014/10/29/agoodquestion/</loc>
-    <lastmod>2014-10-29T13:17:59+08:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>http://pacific0437.github.io/myblog/blog/2014/10/29/goodquestion/</loc>
-    <lastmod>2014-10-29T11:51:07+08:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>http://pacific0437.github.io/myblog/blog/2014/10/29/anothertest/</loc>
-    <lastmod>2014-10-29T11:34:30+08:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>http://pacific0437.github.io/myblog/blog/2014/10/29/glad-to-do-it/</loc>
-    <lastmod>2014-10-29T10:50:18+08:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>http://pacific0437.github.io/myblog/blog/archives/</loc>
-    <lastmod>2014-11-17T17:48:20+08:00</lastmod>
+    <lastmod>2014-11-17T17:49:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://pacific0437.github.io/myblog/</loc>
-    <lastmod>2014-11-17T17:48:20+08:00</lastmod>
+    <lastmod>2014-11-17T17:49:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
