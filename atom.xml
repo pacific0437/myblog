@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-13T17:04:48+08:00</updated>
+  <updated>2014-11-17T17:48:20+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Markdown Review]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/2014/11/17/markdown-review/"/>
+    <updated>2014-11-17T17:47:04+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/2014/11/17/markdown-review</id>
+    <content type="html"><![CDATA[<h1>一级标题</h1>
+
+<h2>2</h2>
+
+<h3>3</h3>
+
+<h4>4</h4>
+
+<h5>5</h5>
+
+<h6>6</h6>
+
+<p>_ First</p>
+
+<ul>
+<li>Second</li>
+<li>Third</li>
+<li>fourth
+
+<ol>
+<li> 4.1</li>
+<li> 4.2</li>
+<li> 4.3</li>
+</ol>
+</li>
+<li>fivth</li>
+<li>sixth</li>
+<li>seventh</li>
+</ul>
+
+
+<p>another list</p>
+
+<ol>
+<li>111</li>
+<li>222</li>
+<li>333</li>
+<li>444</li>
+<li>555</li>
+</ol>
+
+
+<p><a href="http://www.baidu.com">baidu</a> <a href="http://cnblogs.com">cnblog</a>
+<img src="http://ww4.sinaimg.cn/bmiddle/aa397b7fjw1dzplsgpdw5j.jpg" alt="" />
+<strong>加粗</strong>
+<em>变斜了</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Isomorphic Javascript]]></title>
