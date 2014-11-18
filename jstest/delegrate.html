@@ -20,11 +20,15 @@
 <script>
 	var a = document.getElementById('qqq');
 	if(window.addEventListener){
-			a.addEventListener('click',function(e){console.log(e.srcElement.innerHTML)});
+			a.addEventListener('click',function(e){
+				console.log(e.srcElement.innerHTML);
+				console.log(this==window);
+			});
 	}else{
 		a.attachEvent('onclick',function(e){
 			console.log(e);
-			console.log(window.event);			
+			console.log(window.event,window.event==e);
+			console.log(window.event.srcElement.innerHTML);			
 		})
 	}
 </script>
