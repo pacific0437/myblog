@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sublime text</title>
+</head>
+<body>
+<ul id="qqq">
+	<li class="row">1</li>
+	<li class="row">2</li>
+	<li class="row">3</li>
+	<li class="row">4</li>
+	<li class="row">5</li>
+	<li class="row">6</li>
+	<li class="row">7</li>
+	<li class="row">8</li>
+	<li class="row">9</li>
+	<li class="row">10</li>
+</ul>
+<script>
+	var a = document.getElementById('qqq');
+	if(window.addEventListener){
+			a.addEventListener('click',function(e){console.log(e.srcElement.innerHTML)});
+	}else{
+		a.attachEvent('onclick',function(e){
+			console.log(e);
+			console.log(window.event);			
+		})
+	}
+</script>
+</body>
+</html>
