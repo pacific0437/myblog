@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-21T00:23:55+08:00</updated>
+  <updated>2014-11-21T00:27:54+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -25,8 +25,8 @@
 <p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
 parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
 
-<p><img src="images/image/1.png" alt="" />
-<img src="images/image/2.png" alt="" /></p>
+<p><img src="../../images/image/1.png" alt="" />
+<img src="../../images/image/2.png" alt="" /></p>
 ]]></content>
   </entry>
   
