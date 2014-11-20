@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Isomorphic Javascript - Ashley&#8217;s Blog</title>
+  <title>How Browser Parse Html - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="Isomorphic Javascript https://github.com/kriasoft/react-starter-kit 听上去高大上的样子，学一学！！ 以后更新学习心得
-">
+  <meta name="description" content="研究了几个小时，用chrome和dynatrace都试了试，看了看。 结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。 如果你在js文件的某处打断点，并且在控制台查看document. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/isomorphic">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/how-browser-parse-html">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -64,7 +63,7 @@
   
   <header>
     
-      <h1 class="entry-title">Isomorphic Javascript</h1>
+      <h1 class="entry-title">How Browser Parse Html</h1>
     
     
       <p class="meta">
@@ -73,19 +72,22 @@
 
 
 
-<time class='entry-date' datetime='2014-11-13T16:57:32+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:57 pm</span></time>
+<time class='entry-date' datetime='2014-11-20T23:41:36+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:41 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h5>Isomorphic Javascript</h5>
+<div class="entry-content"><p>研究了几个小时，用chrome和dynatrace都试了试，看了看。</p>
 
-<p><a href="https://github.com/kriasoft/react-starter-kit">https://github.com/kriasoft/react-starter-kit</a></p>
+<p>结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。</p>
 
-<p>听上去高大上的样子，学一学！！
-  以后更新学习心得</p>
+<p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
+parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
+
+<p><img src="1.png" alt="" />
+<img src="2.png" alt="" /></p>
 </div>
 
 
@@ -101,7 +103,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-13T16:57:32+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:57 pm</span></time>
+<time class='entry-date' datetime='2014-11-20T23:41:36+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:41 pm</span></time>
       
 
 
@@ -109,7 +111,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/isomorphic/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/isomorphic/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/how-browser-parse-html/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/how-browser-parse-html/" >Tweet</a>
   
   
   
@@ -118,8 +120,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/myblog/blog/markdown-review/" title="Previous Post: Markdown review">&laquo; Markdown review</a>
       
-        <a class="basic-alignment right" href="/myblog/blog/markdown-review/" title="Next Post: Markdown review">Markdown review &raquo;</a>
       
     </p>
   </footer>

@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-19T23:15:05+08:00</updated>
+  <updated>2014-11-21T00:17:32+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Browser Parse Html]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/how-browser-parse-html/"/>
+    <updated>2014-11-20T23:41:36+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/how-browser-parse-html</id>
+    <content type="html"><![CDATA[<p>研究了几个小时，用chrome和dynatrace都试了试，看了看。</p>
+
+<p>结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。</p>
+
+<p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
+parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
+
+<p><img src="1.png" alt="" />
+<img src="2.png" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Markdown Review]]></title>
