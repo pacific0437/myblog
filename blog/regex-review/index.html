@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Regex Review - Ashley&#8217;s Blog</title>
+  <meta name="author" content="Ashley Yang">
+
+  
+  <meta name="description" content="/hello world/ /hello world\b/ 其实还有\B /^hello world$/ \w [A-Za-z0-9_] /g global /i ignore /m multiple exec
+通过( )分组匹配 1
+2
+3
+4
+5
+var osVersion = "Ubuntu &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/regex-review">
+  <link href="/myblog/favicon.png" rel="icon">
+  <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
+  <script src="/myblog/javascripts/modernizr-2.0.js"></script>
+  <script src="/myblog/javascripts/libs/jquery.min.js"></script>
+  <script src="/myblog/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/myblog/">Ashley&#8217;s Blog</a></h1>
+  
+    <h2>A blogging framework for Ashley.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/myblog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pacific0437.github.io/myblog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/myblog/">Blog</a></li>
+  <li><a href="/myblog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Regex Review</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-21T20:26:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>/hello world/</p>
+
+<p>/hello world\b/ 其实还有\B</p>
+
+<p>/^hello world$/</p>
+
+<p>\w [A-Za-z0-9_]</p>
+
+<hr />
+
+<p>/g global</p>
+
+<p>/i ignore</p>
+
+<p>/m multiple</p>
+
+<hr />
+
+<p>exec
+通过( )分组匹配</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var osVersion = "Ubuntu 8";//其中的8表示系统主版本号  
+</span><span class='line'>re=/^[a-z]+\s+(\d+)$/i;//用()来创建子匹配  
+</span><span class='line'>arr =re.exec(osVersion);  
+</span><span class='line'>console.log(arr[0]);//整个osVersion,也就是正则表达式的完整匹配
+</span><span class='line'>console.log(arr[1]);//分组 第一个括号所匹配的  8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>反向引用 先挖个大坑 To be continued&hellip;&hellip;..</p>
+
+<p>非贪婪匹配</p>
+
+<ul>
+<li>??</li>
+<li>+?</li>
+<li>*?</li>
+<li>{1,4}?</li>
+</ul>
+
+
+<hr />
+
+<h4>分组相关（）</h4>
+
+<ul>
+<li><p>/([&lsquo;&ldquo;])[^&rsquo;&rdquo;]*\1/</p></li>
+<li><p>(?:&hellip;)  只组合不记忆</p></li>
+<li><p>(?=&hellip;) 先行断言 指定一个位置 零宽 并非真正匹配
+/Java([Ss]cript)(?=:)/ 可以匹配&#8221;Javascript: The Definitive Guide&#8221;中的Javascript 不包含冒号 但是必须要有！</p></li>
+<li><p>(?!&hellip;) 负向先行断言</p></li>
+</ul>
+
+
+<h4>String方法</h4>
+
+<ul>
+<li>search</li>
+<li>replace</li>
+<li>match</li>
+<li>split</li>
+</ul>
+
+
+<h4>RexExp方法</h4>
+
+<ul>
+<li>exec</li>
+<li>test</li>
+</ul>
+
+
+<p>通过上面的学习我尝试去分析一下Jquery源码中一个正则表达式</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rquickExpr = /^(?:\s*(&lt;[\w\W]+&gt;)[^&gt;]*|#([\w-]*))$/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最外面包裹的的恰好是代表完全匹配的/^&hellip;$/</p>
+
+<p>次外层只组合不记忆(?:&hellip;)</p>
+
+<ul>
+<li>\s*   <strong>一些空格</strong></li>
+<li>(&lt;[\w\W]+>)  <strong>Tag标签</strong></li>
+<li>[^>]*  <strong>任意非>字符</strong></li>
+<li>| <strong>或者</strong></li>
+<li>#([\w-]*)) <strong>#+任意字符或者-</strong></li>
+</ul>
+
+
+<p>所以该正则匹配的是 Tag标签  或者 #开头的字符串（获取id用吗？）。
+分析的是否正确等下一篇继续介绍jQuery源码的blog再分析吧</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ashley Yang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-21T20:26:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:26 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/regex-review/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/regex-review/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/myblog/blog/jquery-structure/" title="Previous Post: JQuery Structure">&laquo; JQuery Structure</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/myblog/blog/regex-review/">Regex Review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/jquery-structure/">JQuery Structure</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/how-browser-parse-html/">How Browser Parse Html</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/markdown-review/">Markdown Review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/isomorphic/">Isomorphic Javascript</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ashley Yang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
