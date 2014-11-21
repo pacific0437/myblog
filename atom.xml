@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-21T00:27:54+08:00</updated>
+  <updated>2014-11-21T16:39:34+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,109 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JQuery Structure]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/jquery-structure/"/>
+    <updated>2014-11-21T16:07:50+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/jquery-structure</id>
+    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>;(function(global, factory) {
+</span><span class='line'>    factory(global);
+</span><span class='line'>}(typeof window !== "undefined" ? window : this, function(window, noGlobal) {
+</span><span class='line'>    var jQuery = function( selector, context ) {
+</span><span class='line'>      return new jQuery.fn.init( selector, context ); //确保构造函数的执行
+</span><span class='line'>  };
+</span><span class='line'>  jQuery.fn = jQuery.prototype = {...};
+</span><span class='line'>  init = jQuery.fn.init = function( selector, context ) {};
+</span><span class='line'>  init.prototype = jQuery.fn//把挂在fn上的方法都传给init prototype，这样Jquery对象就能拥有并使用了
+</span><span class='line'>  // 核心方法
+</span><span class='line'>  // 回调系统
+</span><span class='line'>  // 异步队列
+</span><span class='line'>  // 数据缓存
+</span><span class='line'>  // 队列操作
+</span><span class='line'>  // 选择器引
+</span><span class='line'>  // 属性操作
+</span><span class='line'>  // 节点遍历
+</span><span class='line'>  // 文档处理
+</span><span class='line'>  // 样式操作
+</span><span class='line'>  // 属性操作
+</span><span class='line'>  // 事件体系
+</span><span class='line'>  // AJAX交互
+</span><span class='line'>  // 动画引擎
+</span><span class='line'>  return jQuery;
+</span><span class='line'>}));</span></code></pre></td></tr></table></div></figure>
+
+
+<p>小技巧 ctrl＋m 快速跳转到匹配的括号</p>
+
+<p>－－－－－－－－－－－－－－－－－－－－－－</p>
+
+<h4>noconflict</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var
+</span><span class='line'>  // Map over jQuery in case of overwrite
+</span><span class='line'>  _jQuery = window.jQuery, //把原jQuery对象保存到_jQuery
+</span><span class='line'>
+</span><span class='line'>  // Map over the $ in case of overwrite
+</span><span class='line'>  _$ = window.$; //把原$对象保存到_$
+</span><span class='line'>
+</span><span class='line'>jQuery.noConflict = function( deep ) {
+</span><span class='line'>  if ( window.$ === jQuery ) {
+</span><span class='line'>      window.$ = _$; //如果咱们代码中的JQuery已经鸠占鹊巢占有了window.$，就把他还原回去
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  if ( deep && window.jQuery === jQuery ) {
+</span><span class='line'>      window.jQuery = _jQuery;//如果他要求的更多（指deep），咱们把window.jQuery也还原回去
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  return jQuery;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Browser Parse Html]]></title>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Ashley&#8217;s Blog</title>
+  <title>JQuery Structure - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
@@ -44,7 +44,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/jquery-structure">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -84,15 +84,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/myblog/blog/jquery-structure/">JQuery Structure</a></h1>
+      <h1 class="entry-title">JQuery Structure</h1>
     
     
       <p class="meta">
@@ -108,7 +105,7 @@
   </header>
 
 
-  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -204,163 +201,46 @@
 </span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/myblog/blog/how-browser-parse-html/">How Browser Parse Html</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-20T23:41:36+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:41 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>研究了几个小时，用chrome和dynatrace都试了试，看了看。</p>
-
-<p>结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。</p>
-
-<p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
-parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
-
-<p><img src="../../images/image/1.png" alt="" />
-<img src="../../images/image/2.png" alt="" /></p>
-</div>
-  
   
 
+<span class="byline author vcard">Posted by <span class="fn">Ashley Yang</span></span>
 
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/myblog/blog/markdown-review/">Markdown Review</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
 
-<time class='entry-date' datetime='2014-11-17T17:47:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:47 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>一级标题</h1>
-
-<h2>2</h2>
-
-<h3>3</h3>
-
-<h4>4</h4>
-
-<h5>5</h5>
-
-<h6>6</h6>
-
-<p>_ First</p>
-
-<ul>
-<li>Second</li>
-<li>Third</li>
-<li>fourth
-
-<ol>
-<li> 4.1</li>
-<li> 4.2</li>
-<li> 4.3</li>
-</ol>
-</li>
-<li>fivth</li>
-<li>sixth</li>
-<li>seventh</li>
-</ul>
-
-
-<p>another list</p>
-
-<ol>
-<li>111</li>
-<li>222</li>
-<li>333</li>
-<li>444</li>
-<li>555</li>
-</ol>
-
-
-<p><a href="http://www.baidu.com">baidu</a> <a href="http://cnblogs.com">cnblog</a>
-<img src="http://ww4.sinaimg.cn/bmiddle/aa397b7fjw1dzplsgpdw5j.jpg" alt="" />
-<strong>加粗</strong>
-<em>变斜了</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time class='entry-date' datetime='2014-11-21T16:07:50+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>4:07 pm</span></time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/myblog/blog/isomorphic/">Isomorphic Javascript</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-13T16:57:32+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:57 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h5>Isomorphic Javascript</h5>
-
-<p><a href="https://github.com/kriasoft/react-starter-kit">https://github.com/kriasoft/react-starter-kit</a></p>
-
-<p>听上去高大上的样子，学一学！！
-  以后更新学习心得</p>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/jquery-structure/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/jquery-structure/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/myblog/blog/how-browser-parse-html/" title="Previous Post: how browser parse html">&laquo; how browser parse html</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/myblog/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -392,6 +272,7 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
 
   
 </aside>
+
 
     </div>
   </div>
