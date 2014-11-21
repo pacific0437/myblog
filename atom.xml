@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-21T23:50:24+08:00</updated>
+  <updated>2014-11-22T00:10:54+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -18,7 +18,9 @@
     <link href="http://pacific0437.github.io/myblog/blog/regex-review/"/>
     <updated>2014-11-21T20:26:59+08:00</updated>
     <id>http://pacific0437.github.io/myblog/blog/regex-review</id>
-    <content type="html"><![CDATA[<p>/hello world/</p>
+    <content type="html"><![CDATA[<h2>复习 regexp</h2>
+
+<p>/hello world/</p>
 
 <p>/hello world\b/ 其实还有\B</p>
 
@@ -39,17 +41,12 @@
 <p>exec
 通过( )分组匹配</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>var osVersion = "Ubuntu 8";//其中的8表示系统主版本号  
-</span><span class='line'>re=/^[a-z]+\s+(\d+)$/i;//用()来创建子匹配  
-</span><span class='line'>arr =re.exec(osVersion);  
-</span><span class='line'>console.log(arr[0]);//整个osVersion,也就是正则表达式的完整匹配
-</span><span class='line'>console.log(arr[1]);//分组 第一个括号所匹配的  8</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>var osVersion = 'Ubuntu 8';//其中的8表示系统主版本号  
+re=/^[a-z]+\s+(\d+)$/i;//用()来创建子匹配  
+arr =re.exec(osVersion);  
+console.log(arr[0]);//整个osVersion,也就是正则表达式的完整匹配
+console.log(arr[1]);//分组 第一个括号所匹配的  8
+</code></pre>
 
 <p>反向引用 先挖个大坑 To be continued&hellip;&hellip;..</p>
 
@@ -96,9 +93,8 @@
 
 <p>通过上面的学习我尝试去分析一下Jquery源码中一个正则表达式</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rquickExpr = /^(?:\s*(&lt;[\w\W]+&gt;)[^&gt;]*|#([\w-]*))$/</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>rquickExpr = /^(?:\s*(&lt;[\w\W]+&gt;)[^&gt;]*|#([\w-]*))$/
+</code></pre>
 
 <p>最外面包裹的的恰好是代表完全匹配的/^&hellip;$/</p>
 
