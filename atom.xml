@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-22T00:33:10+08:00</updated>
+  <updated>2014-11-26T00:00:54+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JQuery Object]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/jquery-object/"/>
+    <updated>2014-11-25T22:34:24+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/jquery-object</id>
+    <content type="html"><![CDATA[<h5>JQuery Object</h5>
+
+<pre><code>    init = jQuery.fn.init = function( selector, context ) {
+    var match, elem;
+
+    // HANDLE: $(""), $(null), $(undefined), $(false)
+    if ( !selector ) {
+        return this;
+    }
+
+    // Handle HTML strings
+    if ( typeof selector === "string" ) {
+        if ( selector[0] === "&lt;" &amp;&amp; selector[ selector.length - 1 ] === "&gt;" &amp;&amp; selector.length &gt;= 3 ) {
+            // Assume that strings that start and end with &lt;&gt; are HTML and skip the regex check
+            match = [ null, selector, null ]; //如果是 html 标签， 直接赋值 match
+
+        } else {
+            match = rquickExpr.exec( selector ); //其他情况走正则处理，正则只找有没有&lt;tag&gt;或者 #id
+        }
+
+        // Match html or make sure no context is specified for #id
+        //match代表是否匹配上了，匹配上&lt;tag&gt;放match[1]里 匹配上#id 放match[2]里
+        if ( match &amp;&amp; (match[1] || !context) ) {
+
+            // HANDLE: $(html) -&gt; $(array)
+            //匹配上 tag 标签了
+            if ( match[1] ) {
+                context = context instanceof jQuery ? context[0] : context;
+
+                // scripts is true for back-compat
+                // Intentionally let the error be thrown if parseHTML is not present
+                jQuery.merge( this, jQuery.parseHTML(
+                    match[1],
+                    context &amp;&amp; context.nodeType ? context.ownerDocument || context : document,
+                    true
+                ) );
+
+                // HANDLE: $(html, props)
+                if ( rsingleTag.test( match[1] ) &amp;&amp; jQuery.isPlainObject( context ) ) {
+                    for ( match in context ) {
+                        // Properties of context are called as methods if possible
+                        if ( jQuery.isFunction( this[ match ] ) ) {
+                            this[ match ]( context[ match ] );
+
+                        // ...and otherwise set as attributes
+                        } else {
+                            this.attr( match, context[ match ] );
+                        }
+                    }
+                }
+
+                return this;
+
+            // HANDLE: $(#id)
+            //匹配上 id 了
+            } else {
+                elem = document.getElementById( match[2] );
+
+                // Check parentNode to catch when Blackberry 4.6 returns
+                // nodes that are no longer in the document #6963
+                if ( elem &amp;&amp; elem.parentNode ) {
+                    // Inject the element directly into the jQuery object
+                    this.length = 1;
+                    this[0] = elem;
+                }
+
+                this.context = document;
+                this.selector = selector;
+                return this;
+            }
+
+        // HANDLE: $(expr, $(...))
+        //如果没匹配上 分别看看其他的情况 例如非 id 的其他选择器.css tag
+        } else if ( !context || context.jquery ) {
+            return ( context || rootjQuery ).find( selector );
+
+        // HANDLE: $(expr, context)
+        // (which is just equivalent to: $(context).find(expr)
+        } else {
+            return this.constructor( context ).find( selector );
+        }
+
+    // HANDLE: $(DOMElement)
+    //或者就是个 dom 元素
+    } else if ( selector.nodeType ) {
+        this.context = this[0] = selector;
+        this.length = 1;
+        return this;
+
+    // HANDLE: $(function)
+    // Shortcut for document ready
+    //Jquery Ready 传参是函数啊
+    } else if ( jQuery.isFunction( selector ) ) {
+        return typeof rootjQuery.ready !== "undefined" ?
+            rootjQuery.ready( selector ) :
+            // Execute immediately if ready is not present
+            selector( jQuery );
+    }
+    //这两句是对后面 makeArray传参的预处理，不明觉厉
+    if ( selector.selector !== undefined ) {
+        this.selector = selector.selector;
+        this.context = selector.context;
+    }
+    其他一些情况 比如就传了个对象类似{a:1,b:2}
+    return jQuery.makeArray( selector, this );//其实还是把传进去的对象 挂在了 JQuery 对象的0位置上
+};
+</code></pre>
+
+<p>匹配上 HTML Tag String 之后详细的处理没看，下次再说吧。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Regex Review]]></title>
