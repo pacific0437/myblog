@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-26T00:00:54+08:00</updated>
+  <updated>2014-11-27T23:45:51+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,77 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JQuery Find and prevObject]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/jquery-find-and-prevobject/"/>
+    <updated>2014-11-27T23:09:08+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/jquery-find-and-prevobject</id>
+    <content type="html"><![CDATA[<p>jQuery内部维护着一个jQuery对象栈。每个遍历方法都会找到一组新元素（一个jQuery对象），然后jQuery会把这组元素推入到栈中。
+每个jQuery对象都有三个属性：context、selector和prevObject，其中的prevObject属性就指向这个对象栈中的前一个对象，而通过这个属性可以回溯到最初的DOM元素集中。
+一般通过end()以及addBack()方法实现内部栈的调用
+例如$(&lsquo;aaa&rsquo;).find(&lsquo;div&rsquo;).css(&hellip;).end() //从子 div 那里回来了</p>
+
+<pre><code>find: function( selector ) {
+    var i,
+        len = this.length,
+        ret = [],
+        self = this;
+    /*
+     *如果不是 string，那就应该是一个 Jquery 对象
+     *过滤或者说寻找到该对象的同时通过 pushStack 把该对象压入jQuery对象栈的顶端
+     */
+    if ( typeof selector !== "string" ) {
+        return this.pushStack( jQuery( selector ).filter(function() {
+            for ( i = 0; i &lt; len; i++ ) {
+                if ( jQuery.contains( self[ i ], this ) ) {
+                    return true;
+                }
+            }
+        }) );
+    }
+
+    for ( i = 0; i &lt; len; i++ ) {
+    //jQuery.find 等于 sizzle，sizzle 的内容以后再分析。结果在 ret 中呢
+        jQuery.find( selector, self[ i ], ret );
+    }
+
+    // Needed because $( selector, context ) becomes $( context ).find( selector )
+    // 没看懂，为什么会有重复？
+    // 但是pushStack的执行是毋庸置疑的
+    ret = this.pushStack( len &gt; 1 ? jQuery.unique( ret ) : ret );
+    ret.selector = this.selector ? this.selector + " " + selector : selector;
+    return ret;
+}
+</code></pre>
+
+<p>然后就是 pushStack 和 end 方法</p>
+
+<pre><code>    pushStack: function( elems ) {
+
+    // Build a new jQuery matched element set
+    //太犀利了，没看懂这数组的合并
+    var ret = jQuery.merge( this.constructor(), elems );
+
+    // Add the old object onto the stack (as a reference)
+    //做了一次关键的链接，把执行 find 的 JQuery 对象赋给了返回结果的prevObject
+    //通俗点说就是我知道了我的上家是谁
+    ret.prevObject = this;
+    ret.context = this.context;
+
+    // Return the newly-formed element set
+    return ret;
+},
+    end: function() {
+    //返回我的上家
+    return this.prevObject || this.constructor(null);
+}
+</code></pre>
+
+<p>还是有不明白的地方以后再回过来看吧
+这些 Jquery 的解读大部分都是从 imooc 上 Aaron 的<a href="http://www.imooc.com/learn/172">课程</a>中学来的</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JQuery Object]]></title>
