@@ -105,7 +105,8 @@
 <pre><code>eq: function( i ) {
     var len = this.length,
         j = +i + ( i &lt; 0 ? len : 0 );
-    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素     return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
+    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素
+    return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
 
 }
 </code></pre>

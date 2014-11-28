@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jquery | Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-28T16:18:25+08:00</updated>
+  <updated>2014-11-28T16:21:40+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -44,7 +44,8 @@
 <pre><code>eq: function( i ) {
     var len = this.length,
         j = +i + ( i &lt; 0 ? len : 0 );
-    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素     return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
+    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素
+    return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
 
 }
 </code></pre>
