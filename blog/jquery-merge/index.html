@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How Browser Parse Html - Ashley&#8217;s Blog</title>
+  <title>JQuery Merge - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="研究了几个小时，用chrome和dynatrace都试了试，看了看。 结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。 如果你在js文件的某处打断点，并且在控制台查看document. &hellip;">
+  <meta name="description" content="merge: function( first, second ) { var len = +second.length, j = 0, i = first.length; for ( ; j &lt; len; j++ ) { first[ i++ ] = second[ j ]; } first &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/how-browser-parse-html">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/jquery-merge">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -63,7 +63,7 @@
   
   <header>
     
-      <h1 class="entry-title">How Browser Parse Html</h1>
+      <h1 class="entry-title">JQuery Merge</h1>
     
     
       <p class="meta">
@@ -72,22 +72,52 @@
 
 
 
-<time class='entry-date' datetime='2014-11-20T23:41:36+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:41 pm</span></time>
+<time class='entry-date' datetime='2014-11-28T14:03:13+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:03 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>研究了几个小时，用chrome和dynatrace都试了试，看了看。</p>
+<div class="entry-content"><pre><code>merge: function( first, second ) {
+    var len = +second.length,
+        j = 0,
+        i = first.length;
 
-<p>结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。</p>
+    for ( ; j &lt; len; j++ ) {
+        first[ i++ ] = second[ j ];
+    }
 
-<p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
-parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
+    first.length = i;
 
-<p><img src="../../images/image/1.png" alt="" />
-<img src="../../images/image/2.png" alt="" /></p>
+    return first;
+}
+</code></pre>
+
+<p>first 和 second 都是数组的话非常好理解，如果是 JQuery 对象其实也是可以的，因为 JQeury 对象本身也具有类似数组的特性</p>
+
+<pre><code>var ret = jQuery.merge( this.constructor(), elems );
+</code></pre>
+
+<p>所以昨天代码pushStack中解析的这一句，实际上是构造了一个全新的 JQuery 元素然后把 elems 赋给了他的 dom 属性。
+再举一个 get 和 eq 区别的例子，我们都知道 get 返回的是 dom，eq 返回的是包装过后的 jquery 元素，这个其实也是通过 pushStack 来实现的</p>
+
+<pre><code>eq: function( i ) {
+    var len = this.length,
+        j = +i + ( i &lt; 0 ? len : 0 );
+    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素     return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
+
+}
+</code></pre>
+
+<h4>JQuery.slice</h4>
+
+<pre><code>slice: function() {
+    return this.pushStack( slice.apply( this, arguments ) );
+}
+</code></pre>
+
+<p>arguments传进去后内部调用Array.slice对 JQuery 数组做分割，将结果（一个 dom 数组）传入 pushStack 做进一步处理。最终返回分割后的 JQuery 对象。</p>
 </div>
 
 
@@ -103,15 +133,21 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
 
 
 
-<time class='entry-date' datetime='2014-11-20T23:41:36+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:41 pm</span></time>
+<time class='entry-date' datetime='2014-11-28T14:03:13+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:03 pm</span></time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/myblog/blog/categories/jquery/'>jquery</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/how-browser-parse-html/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/how-browser-parse-html/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/jquery-merge/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/jquery-merge/" >Tweet</a>
   
   
   
@@ -120,10 +156,8 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/myblog/blog/markdown-review/" title="Previous Post: Markdown review">&laquo; Markdown review</a>
+        <a class="basic-alignment left" href="/myblog/blog/jquery-find-and-prevobject/" title="Previous Post: JQuery find and prevObject">&laquo; JQuery find and prevObject</a>
       
-      
-        <a class="basic-alignment right" href="/myblog/blog/jquery-structure/" title="Next Post: JQuery Structure">JQuery Structure &raquo;</a>
       
     </p>
   </footer>

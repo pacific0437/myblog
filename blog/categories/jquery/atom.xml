@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jquery | Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-27T23:45:51+08:00</updated>
+  <updated>2014-11-28T16:18:25+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JQuery Merge]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/jquery-merge/"/>
+    <updated>2014-11-28T14:03:13+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/jquery-merge</id>
+    <content type="html"><![CDATA[<pre><code>merge: function( first, second ) {
+    var len = +second.length,
+        j = 0,
+        i = first.length;
+
+    for ( ; j &lt; len; j++ ) {
+        first[ i++ ] = second[ j ];
+    }
+
+    first.length = i;
+
+    return first;
+}
+</code></pre>
+
+<p>first 和 second 都是数组的话非常好理解，如果是 JQuery 对象其实也是可以的，因为 JQeury 对象本身也具有类似数组的特性</p>
+
+<pre><code>var ret = jQuery.merge( this.constructor(), elems );
+</code></pre>
+
+<p>所以昨天代码pushStack中解析的这一句，实际上是构造了一个全新的 JQuery 元素然后把 elems 赋给了他的 dom 属性。
+再举一个 get 和 eq 区别的例子，我们都知道 get 返回的是 dom，eq 返回的是包装过后的 jquery 元素，这个其实也是通过 pushStack 来实现的</p>
+
+<pre><code>eq: function( i ) {
+    var len = this.length,
+        j = +i + ( i &lt; 0 ? len : 0 );
+    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素     return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
+
+}
+</code></pre>
+
+<h4>JQuery.slice</h4>
+
+<pre><code>slice: function() {
+    return this.pushStack( slice.apply( this, arguments ) );
+}
+</code></pre>
+
+<p>arguments传进去后内部调用Array.slice对 JQuery 数组做分割，将结果（一个 dom 数组）传入 pushStack 做进一步处理。最终返回分割后的 JQuery 对象。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JQuery Object]]></title>
