@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jquery | Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-11-28T16:21:40+08:00</updated>
+  <updated>2014-12-05T23:47:40+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,228 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JQuery API]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/jquery-api/"/>
+    <updated>2014-12-03T23:11:18+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/jquery-api</id>
+    <content type="html"><![CDATA[<h1>JQuery API</h1>
+
+<h6>jQuery( &ldquo;prev + next&rdquo; )</h6>
+
+<p>同一个父元素下紧接在 “prev” 元素后的 “next” 元素</p>
+
+<h6>jQuery( &ldquo;prev ~ siblings&rdquo; )</h6>
+
+<p>匹配 “prev” 元素之后的所有 兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器。</p>
+
+<h6>jQuery( &ldquo;:eq(index)&rdquo; )</h6>
+
+<p><strong>注意</strong> 因为 :eq() 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分, 使用:eq()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。为了在现代浏览器上获得更佳的性能，请使用$(&ldquo;your-pure-css-selector&rdquo;).eq(index)代替。</p>
+
+<h6>jQuery( &ldquo;:has(selector)&rdquo; )</h6>
+
+<p>如果表达式 $(&lsquo;div:has(p)&rsquo;) 匹配一个 <div>，那么应有一个<p>存在于 <div> 后代元素中的任何地方，不是直接的子元素也可以。它匹配的是 div 而不是 p, 对比 $(&ldquo;div p&rdquo;)</p>
+
+<h6>jQuery( &ldquo;[attribute|=&lsquo;value&rsquo;]&rdquo; )</h6>
+
+<p>选择指定属性值等于给定字符串或以该字符串为前缀（该字符串后跟一个连字符“-” ）的元素。</p>
+
+<h6>jQuery( &ldquo;[attribute~=&lsquo;value&rsquo;]&rdquo; )</h6>
+
+<p>选择指定属性用空格分隔的值中包含一个给定值的元素。</p>
+
+<h6>jQuery( &ldquo;:nth-child(index/even/odd/equation)&rdquo; )</h6>
+
+<p>选择他们所有父元素的第n个子元素。
+用:nth-child(n)时 ，所有子元素都计算在内，不管它们是什么，并且指定的元素被选中仅匹配连接到伪类选择器。而用:eq(n)时，只有与这个伪类前面的选择相匹配的元素才会被计数（即，成为候选元素），不限于任何其他元素的孩子，而且第（n +1）个一（n是基于0）被选中。</p>
+
+<h6>.height()</h6>
+
+<p>返回的是数值， 只是纯粹的 height 数值，与此相对应的是 css(&lsquo;height&rsquo;) 返回带 px 的字符串，innerHeight() 返回height+padding的数值</p>
+
+<h6>.outerHeight( [includeMargin ] )</h6>
+
+<p>height+padding+border  or  height+padding+border+margin</p>
+
+<h6>.offset() and .position()</h6>
+
+<p>.offset()是获得该元素相对于documet的当前坐标，而.position()方法可以取得元素相对于父元素的偏移位置</p>
+
+<p>选择器</p>
+
+<p>基本
+*
+.class
+element
+<strong>#</strong>id
+selector1, selectorN, &hellip;
+层级
+parent > child
+ancestor descendant
+prev + next
+prev ~ siblings
+基本筛选
+:animated
+:eq()
+:even
+:first
+:gt()
+:header
+:lang()
+:last
+:lt()
+:not()
+:odd
+:root
+:target
+内容筛选
+:contains()
+:empty
+:has()
+:parent</p>
+
+<p>可见性筛选
+:hidden
+:visible
+属性
+[name|=&ldquo;value&rdquo;]
+[name*=&ldquo;value&rdquo;]
+[name~=&ldquo;value&rdquo;]
+[name$=&ldquo;value&rdquo;]
+[name=&ldquo;value&rdquo;]
+[name!=&ldquo;value&rdquo;
+[name^=&ldquo;value&rdquo;]
+[name]
+[name=&ldquo;value&rdquo;][name2=&ldquo;value2&rdquo;]
+子元素筛选
+:first-child
+:first-of-type
+:last-child
+:last-of-type
+:nth-child()
+:nth-last-child()
+:nth-last-of-type()
+:nth-of-type()
+:only-child
+:only-of-type()</p>
+
+<p>表单
+:button
+:checkbox
+:checked
+:disabled
+:enabled
+:focus
+:file
+:image
+:input
+:password
+:radio
+:reset
+:selected
+:submit
+:text
+属性 / CSS</p>
+
+<p>属性
+.attr()
+.prop()
+.removeAttr()
+.removeProp()
+.val()
+CSS
+.addClass()
+.css()
+jQuery.cssHooks
+.hasClass()
+.removeClass()
+.toggleClass()
+尺寸
+.height()
+.innerHeight()
+.innerWidth()
+.outerHeight()
+.outerWidth()
+.width()
+位置
+.offset()
+.offsetParent()
+.position()
+.scrollLeft()
+.scrollTop()
+数据
+jQuery.data()
+.data()
+jQuery.hasData()
+jQuery.removeData()
+.removeData()
+操作</p>
+
+<p>拷贝
+.clone()
+DOM 插入, 包裹
+.wrap()
+.wrapAll()
+.wrapInner()
+DOM 插入, 内部插入
+.append()
+.appendTo()
+.html()
+.prepend()
+.prependTo()
+.text()
+DOM 插入, 外部插入
+.after()
+.before()
+.insertAfter()
+.insertBefore()
+DOM 移除
+.detach()
+.empty()
+.remove()
+.unwrap()
+DOM 替换
+.replaceAll()
+.replaceWith()
+遍历</p>
+
+<p>筛选
+.eq()
+.filter()
+.first()
+.has()
+.is()
+.last()
+.map()
+.not()
+.slice()
+各种遍历
+.add()
+.andSelf()
+.contents()
+.each()
+.end()
+树遍历
+.addBack()
+.children()
+.closest()
+.find()
+.next()
+.nextAll()
+.nextUntil()
+.parent()
+.parents()
+.parentsUntil()
+.prev()
+.prevAll()
+.prevUntil()
+.siblings()
+重大更新！这么写实在太慢了 还是直接贴网址比较好
+<a href="http://www.css88.com/jqapi-1.9/">JQUery API</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JQuery Merge]]></title>
