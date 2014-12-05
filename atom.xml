@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-12-05T23:47:40+08:00</updated>
+  <updated>2014-12-05T23:48:48+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -18,7 +18,7 @@
     <link href="http://pacific0437.github.io/myblog/blog/jquery-api/"/>
     <updated>2014-12-03T23:11:18+08:00</updated>
     <id>http://pacific0437.github.io/myblog/blog/jquery-api</id>
-    <content type="html"><![CDATA[<h1>JQuery API</h1>
+    <content type="html"><![CDATA[<h3>JQuery API</h3>
 
 <h6>jQuery( &ldquo;prev + next&rdquo; )</h6>
 
@@ -229,8 +229,9 @@ DOM 替换
 .prev()
 .prevAll()
 .prevUntil()
-.siblings()
-重大更新！这么写实在太慢了 还是直接贴网址比较好
+.siblings()</p>
+
+<p>重大更新！这么写实在太慢了 还是直接贴网址比较好
 <a href="http://www.css88.com/jqapi-1.9/">JQUery API</a></p>
 ]]></content>
   </entry>
