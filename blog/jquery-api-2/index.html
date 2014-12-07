@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>JQuery Merge - Ashley&#8217;s Blog</title>
+  <title>JQuery API 2 - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="merge: function( first, second ) { var len = +second.length, j = 0, i = first.length; for ( ; j &lt; len; j++ ) { first[ i++ ] = second[ j ]; } first &hellip;">
+  <meta name="description" content="放大招了 JQuery
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/jquery-merge">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/jquery-api-2">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -63,7 +64,7 @@
   
   <header>
     
-      <h1 class="entry-title">JQuery Merge</h1>
+      <h1 class="entry-title">JQuery API 2</h1>
     
     
       <p class="meta">
@@ -72,53 +73,16 @@
 
 
 
-<time class='entry-date' datetime='2014-11-28T14:03:13+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:03 pm</span></time>
+<time class='entry-date' datetime='2014-12-07T16:43:47+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:43 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><pre><code>merge: function( first, second ) {
-    var len = +second.length,
-        j = 0,
-        i = first.length;
+<div class="entry-content"><h4>放大招了</h4>
 
-    for ( ; j &lt; len; j++ ) {
-        first[ i++ ] = second[ j ];
-    }
-
-    first.length = i;
-
-    return first;
-}
-</code></pre>
-
-<p>first 和 second 都是数组的话非常好理解，如果是 JQuery 对象其实也是可以的，因为 JQeury 对象本身也具有类似数组的特性</p>
-
-<pre><code>var ret = jQuery.merge( this.constructor(), elems );
-</code></pre>
-
-<p>所以昨天代码pushStack中解析的这一句，实际上是构造了一个全新的 JQuery 元素然后把 elems 赋给了他的 dom 属性。
-再举一个 get 和 eq 区别的例子，我们都知道 get 返回的是 dom，eq 返回的是包装过后的 jquery 元素，这个其实也是通过 pushStack 来实现的</p>
-
-<pre><code>eq: function( i ) {
-    var len = this.length,
-        j = +i + ( i &lt; 0 ? len : 0 );
-    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素
-    return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
-
-}
-</code></pre>
-
-<h4>JQuery.slice</h4>
-
-<pre><code>slice: function() {
-    return this.pushStack( slice.apply( this, arguments ) );
-}
-</code></pre>
-
-<p>arguments传进去后内部调用Array.slice对 JQuery 数组做分割，将结果（一个 dom 数组）传入 pushStack 做进一步处理。最终返回分割后的 JQuery 对象。</p>
+<p>JQuery</p>
 </div>
 
 
@@ -134,21 +98,15 @@
 
 
 
-<time class='entry-date' datetime='2014-11-28T14:03:13+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:03 pm</span></time>
+<time class='entry-date' datetime='2014-12-07T16:43:47+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:43 pm</span></time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/myblog/blog/categories/jquery/'>jquery</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/jquery-merge/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/jquery-merge/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/jquery-api-2/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/jquery-api-2/" >Tweet</a>
   
   
   
@@ -157,10 +115,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/myblog/blog/jquery-find-and-prevobject/" title="Previous Post: JQuery find and prevObject">&laquo; JQuery find and prevObject</a>
+        <a class="basic-alignment left" href="/myblog/blog/jquery-api/" title="Previous Post: JQuery API">&laquo; JQuery API</a>
       
-      
-        <a class="basic-alignment right" href="/myblog/blog/jquery-api/" title="Next Post: JQuery API">JQuery API &raquo;</a>
       
     </p>
   </footer>
