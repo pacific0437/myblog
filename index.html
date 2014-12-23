@@ -9,7 +9,7 @@
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="JQuery API jQuery( &ldquo;prev + next&rdquo; ) 同一个父元素下紧接在 “prev” 元素后的 “next” 元素 jQuery( &ldquo;prev ~ siblings&rdquo; ) 匹配 “prev” 元素之后的所有 兄弟元素。 &hellip;">
+  <meta name="description" content="Read from Here function Promise(fn) { var value = null, deferreds = []; this.then = function (onFulfilled) { deferreds.push(onFulfilled); }; function &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -60,6 +60,79 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/myblog/blog/promise-part-1/">Promise Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-18T23:44:16+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:44 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://shangchun.net/promise-insight.html">Read from Here</a></p>
+
+<pre><code>function Promise(fn) {
+    var value = null,
+        deferreds = [];
+
+    this.then = function (onFulfilled) {
+        deferreds.push(onFulfilled);
+    };
+
+    function resolve(value) {
+        deferreds.forEach(function (deferred) {
+            deferred(value);
+        });
+    }
+
+    fn(resolve);
+}
+</code></pre>
+
+<p>Promise 做了以下几件事情</p>
+
+<ol>
+<li>定义了通过 then 添加回调函数</li>
+<li>定义了触发回调执行的 resolve 方法</li>
+<li>把2中定义的 resolve 传入 fn 中，并执行 fn，而 fn里面会在特定的时间执行 resolve</li>
+</ol>
+
+
+<p>此外，Promises/A+ 规范明确要求回调需要通过异步方式执行，用以保证一致可靠的执行顺序。为解决这两个问题，可以通过 setTimeout 将 resolve 中执行回调的逻辑放置到 JS 任务队列末尾：</p>
+
+<p>对于 then 的改进</p>
+
+<pre><code>this.then = function (onFulfilled) {
+    if (state === 'pending') {
+        deferreds.push(onFulfilled);
+        return this;
+    }
+    onFulfilled(value);
+    return this;
+};
+</code></pre>
+
+<p>后续添加的回调也可以立即执行
+还是没写完 下次再继续吧</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1004,6 +1077,10 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/myblog/blog/promise-part-1/">Promise Part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/myblog/blog/jquery-api/">JQuery API</a>
       </li>
     
@@ -1017,10 +1094,6 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
     
       <li class="post">
         <a href="/myblog/blog/jquery-object/">JQuery Object</a>
-      </li>
-    
-      <li class="post">
-        <a href="/myblog/blog/regex-review/">Regex Review</a>
       </li>
     
   </ul>

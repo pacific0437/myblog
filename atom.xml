@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-12-07T16:48:09+08:00</updated>
+  <updated>2014-12-23T23:34:37+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Promise Part 1]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/promise-part-1/"/>
+    <updated>2014-12-18T23:44:16+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/promise-part-1</id>
+    <content type="html"><![CDATA[<p><a href="http://shangchun.net/promise-insight.html">Read from Here</a></p>
+
+<pre><code>function Promise(fn) {
+    var value = null,
+        deferreds = [];
+
+    this.then = function (onFulfilled) {
+        deferreds.push(onFulfilled);
+    };
+
+    function resolve(value) {
+        deferreds.forEach(function (deferred) {
+            deferred(value);
+        });
+    }
+
+    fn(resolve);
+}
+</code></pre>
+
+<p>Promise 做了以下几件事情</p>
+
+<ol>
+<li>定义了通过 then 添加回调函数</li>
+<li>定义了触发回调执行的 resolve 方法</li>
+<li>把2中定义的 resolve 传入 fn 中，并执行 fn，而 fn里面会在特定的时间执行 resolve</li>
+</ol>
+
+
+<p>此外，Promises/A+ 规范明确要求回调需要通过异步方式执行，用以保证一致可靠的执行顺序。为解决这两个问题，可以通过 setTimeout 将 resolve 中执行回调的逻辑放置到 JS 任务队列末尾：</p>
+
+<p>对于 then 的改进</p>
+
+<pre><code>this.then = function (onFulfilled) {
+    if (state === 'pending') {
+        deferreds.push(onFulfilled);
+        return this;
+    }
+    onFulfilled(value);
+    return this;
+};
+</code></pre>
+
+<p>后续添加的回调也可以立即执行
+还是没写完 下次再继续吧</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JQuery API]]></title>

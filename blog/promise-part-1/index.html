@@ -5,21 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Markdown Review - Ashley&#8217;s Blog</title>
+  <title>Promise Part 1 - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="一级标题 2 3 4 5 6 _ First Second
-Third
-fourth 4.1 4.2 4.3 fivth
-sixth
-seventh another list 111
-222
-333
-444
-555 baidu cnblog 加粗
-变斜了
-">
+  <meta name="description" content="Read from Here function Promise(fn) { var value = null, deferreds = []; this.then = function (onFulfilled) { deferreds.push(onFulfilled); }; function &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,7 +18,7 @@ seventh another list 111
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/markdown-review">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/promise-part-1">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -73,7 +63,7 @@ seventh another list 111
   
   <header>
     
-      <h1 class="entry-title">Markdown Review</h1>
+      <h1 class="entry-title">Promise Part 1</h1>
     
     
       <p class="meta">
@@ -82,59 +72,58 @@ seventh another list 111
 
 
 
-<time class='entry-date' datetime='2014-11-17T17:47:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:47 pm</span></time>
+<time class='entry-date' datetime='2014-12-18T23:44:16+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:44 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h1>一级标题</h1>
+<div class="entry-content"><p><a href="http://shangchun.net/promise-insight.html">Read from Here</a></p>
 
-<h2>2</h2>
+<pre><code>function Promise(fn) {
+    var value = null,
+        deferreds = [];
 
-<h3>3</h3>
+    this.then = function (onFulfilled) {
+        deferreds.push(onFulfilled);
+    };
 
-<h4>4</h4>
+    function resolve(value) {
+        deferreds.forEach(function (deferred) {
+            deferred(value);
+        });
+    }
 
-<h5>5</h5>
+    fn(resolve);
+}
+</code></pre>
 
-<h6>6</h6>
-
-<p>_ First</p>
-
-<ul>
-<li>Second</li>
-<li>Third</li>
-<li>fourth
-
-<ol>
-<li> 4.1</li>
-<li> 4.2</li>
-<li> 4.3</li>
-</ol>
-</li>
-<li>fivth</li>
-<li>sixth</li>
-<li>seventh</li>
-</ul>
-
-
-<p>another list</p>
+<p>Promise 做了以下几件事情</p>
 
 <ol>
-<li>111</li>
-<li>222</li>
-<li>333</li>
-<li>444</li>
-<li>555</li>
+<li>定义了通过 then 添加回调函数</li>
+<li>定义了触发回调执行的 resolve 方法</li>
+<li>把2中定义的 resolve 传入 fn 中，并执行 fn，而 fn里面会在特定的时间执行 resolve</li>
 </ol>
 
 
-<p><a href="http://www.baidu.com">baidu</a> <a href="http://cnblogs.com">cnblog</a>
-<img src="http://ww4.sinaimg.cn/bmiddle/aa397b7fjw1dzplsgpdw5j.jpg" alt="" />
-<strong>加粗</strong>
-<em>变斜了</em></p>
+<p>此外，Promises/A+ 规范明确要求回调需要通过异步方式执行，用以保证一致可靠的执行顺序。为解决这两个问题，可以通过 setTimeout 将 resolve 中执行回调的逻辑放置到 JS 任务队列末尾：</p>
+
+<p>对于 then 的改进</p>
+
+<pre><code>this.then = function (onFulfilled) {
+    if (state === 'pending') {
+        deferreds.push(onFulfilled);
+        return this;
+    }
+    onFulfilled(value);
+    return this;
+};
+</code></pre>
+
+<p>后续添加的回调也可以立即执行
+还是没写完 下次再继续吧</p>
 </div>
 
 
@@ -150,7 +139,7 @@ seventh another list 111
 
 
 
-<time class='entry-date' datetime='2014-11-17T17:47:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:47 pm</span></time>
+<time class='entry-date' datetime='2014-12-18T23:44:16+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:44 pm</span></time>
       
 
 
@@ -158,7 +147,7 @@ seventh another list 111
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/markdown-review/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/markdown-review/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/promise-part-1/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/promise-part-1/" >Tweet</a>
   
   
   
@@ -167,10 +156,8 @@ seventh another list 111
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/myblog/blog/isomorphic/" title="Previous Post: Isomorphic Javascript">&laquo; Isomorphic Javascript</a>
+        <a class="basic-alignment left" href="/myblog/blog/jquery-api/" title="Previous Post: JQuery API">&laquo; JQuery API</a>
       
-      
-        <a class="basic-alignment right" href="/myblog/blog/how-browser-parse-html/" title="Next Post: how browser parse html">how browser parse html &raquo;</a>
       
     </p>
   </footer>
