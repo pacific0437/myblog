@@ -5,12 +5,19 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Isomorphic Javascript - Ashley&#8217;s Blog</title>
+  <title>Backbone View in View - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="Isomorphic Javascript https://github.com/kriasoft/react-starter-kit 听上去高大上的样子，学一学！！ 以后更新学习心得
-">
+  <meta name="description" content="大 view 里面需要包含一些小view
+绑定事件遇到了些问题，不知道能否在小 view inital 或者 render 的时候就能绑定大 view 的事件，
+现在的做法是 1
+2
+3
+4
+//In BigView
+new smallview();
+smallview.bind('', &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +26,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/isomorphic">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/backbone-view-in-view">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -64,7 +71,7 @@
   
   <header>
     
-      <h1 class="entry-title">Isomorphic Javascript</h1>
+      <h1 class="entry-title">Backbone View in View</h1>
     
     
       <p class="meta">
@@ -73,19 +80,33 @@
 
 
 
-<time class='entry-date' datetime='2014-11-13T16:57:32+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:57 pm</span></time>
+<time class='entry-date' datetime='2015-02-16T14:14:12+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:14 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h5>Isomorphic Javascript</h5>
+<div class="entry-content"><p>大 view 里面需要包含一些小view
+绑定事件遇到了些问题，不知道能否在小 view inital 或者 render 的时候就能绑定大 view 的事件，
+现在的做法是</p>
 
-<p><a href="https://github.com/kriasoft/react-starter-kit">https://github.com/kriasoft/react-starter-kit</a></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//In BigView
+</span><span class='line'>new smallview();
+</span><span class='line'>smallview.bind('',bigview.function1);
+</span><span class='line'>smallview.bind('',bigview.function2);</span></code></pre></td></tr></table></div></figure>
 
-<p>听上去高大上的样子，学一学！！
-  以后更新学习心得</p>
+
+<p>每次 new smallview 的时候都要写绑定事件</p>
+
+<p>目前想在 smallview  initial 或者 render 的时候进行自动绑定
+能否在不把 BigView 传入smallView的条件下 实现这样的绑定呢？
+不喜欢这样的写法 感觉互相引用总是怪怪的
+bigview.a = smallview  smallview.b = bigview</p>
 </div>
 
 
@@ -101,7 +122,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-13T16:57:32+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:57 pm</span></time>
+<time class='entry-date' datetime='2015-02-16T14:14:12+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:14 pm</span></time>
       
 
 
@@ -109,7 +130,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/isomorphic/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/isomorphic/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/backbone-view-in-view/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/backbone-view-in-view/" >Tweet</a>
   
   
   
@@ -118,8 +139,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/myblog/blog/promise-part-2/" title="Previous Post: Promise Part 2">&laquo; Promise Part 2</a>
       
-        <a class="basic-alignment right" href="/myblog/blog/markdown-review/" title="Next Post: Markdown review">Markdown review &raquo;</a>
       
     </p>
   </footer>

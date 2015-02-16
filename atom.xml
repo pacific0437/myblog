@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2014-12-23T23:34:37+08:00</updated>
+  <updated>2015-02-16T14:31:08+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Backbone View in View]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/backbone-view-in-view/"/>
+    <updated>2015-02-16T14:14:12+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/backbone-view-in-view</id>
+    <content type="html"><![CDATA[<p>大 view 里面需要包含一些小view
+绑定事件遇到了些问题，不知道能否在小 view inital 或者 render 的时候就能绑定大 view 的事件，
+现在的做法是</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//In BigView
+</span><span class='line'>new smallview();
+</span><span class='line'>smallview.bind('',bigview.function1);
+</span><span class='line'>smallview.bind('',bigview.function2);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>每次 new smallview 的时候都要写绑定事件</p>
+
+<p>目前想在 smallview  initial 或者 render 的时候进行自动绑定
+能否在不把 BigView 传入smallView的条件下 实现这样的绑定呢？
+不喜欢这样的写法 感觉互相引用总是怪怪的
+bigview.a = smallview  smallview.b = bigview</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Promise Part 2]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/promise-part-2/"/>
+    <updated>2014-12-30T20:12:53+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/promise-part-2</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Promise Part 1]]></title>
