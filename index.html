@@ -9,15 +9,16 @@
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="大 view 里面需要包含一些小view
-绑定事件遇到了些问题，不知道能否在小 view inital 或者 render 的时候就能绑定大 view 的事件，
-现在的做法是 1
+  <meta name="description" content="CSS Grid Layout Two-dimensional grid-based layout system aligns elements into columns and rows. 1
 2
 3
 4
-//In BigView
-new smallview();
-smallview.bind('', &hellip;">
+5
+6
+7
+8
+9
+.wrapper { display: grid; grid- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +69,59 @@ smallview.bind('', &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/myblog/blog/css-grid-layout/">CSS Grid Layout</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-25T20:48:33+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>CSS Grid Layout</h2>
+
+<p>Two-dimensional grid-based layout system aligns elements into columns and rows.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.wrapper {
+</span><span class='line'>  display: grid;
+</span><span class='line'>  grid-template-columns: 100px 60px 100px 60px 100px;
+</span><span class='line'>  grid-template-rows: 50px 70px;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>.b, .d, .f, .h, .j {
+</span><span class='line'>  background-color: red;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="./images/image/QQ20150318-2.png" alt="" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1004,43 +1058,6 @@ console.log(arr[1]);//分组 第一个括号所匹配的  8
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/myblog/blog/how-browser-parse-html/">How Browser Parse Html</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-20T23:41:36+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:41 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>研究了几个小时，用chrome和dynatrace都试了试，看了看。</p>
-
-<p>结论就一句话：js执行的时候会阻塞浏览器的其他行为，现代浏览器都支持并行下载的功能了，但是js的执行还是按从上倒下的顺序依次进行，只是下载由于并行能提前一会。</p>
-
-<p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
-parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
-
-<p><img src="../../images/image/1.png" alt="" />
-<img src="../../images/image/2.png" alt="" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/myblog/posts/2">&larr; Older</a>
@@ -1056,6 +1073,10 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/myblog/blog/css-grid-layout/">CSS Grid Layout</a>
+      </li>
+    
+      <li class="post">
         <a href="/myblog/blog/backbone-view-in-view/">Backbone View in View</a>
       </li>
     
@@ -1069,10 +1090,6 @@ parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原�
     
       <li class="post">
         <a href="/myblog/blog/jquery-api/">JQuery API</a>
-      </li>
-    
-      <li class="post">
-        <a href="/myblog/blog/jquery-merge/">JQuery Merge</a>
       </li>
     
   </ul>

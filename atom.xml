@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-02-16T14:31:08+08:00</updated>
+  <updated>2015-03-25T21:13:10+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CSS Grid Layout]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/css-grid-layout/"/>
+    <updated>2015-03-25T20:48:33+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/css-grid-layout</id>
+    <content type="html"><![CDATA[<h2>CSS Grid Layout</h2>
+
+<p>Two-dimensional grid-based layout system aligns elements into columns and rows.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.wrapper {
+</span><span class='line'>  display: grid;
+</span><span class='line'>  grid-template-columns: 100px 60px 100px 60px 100px;
+</span><span class='line'>  grid-template-rows: 50px 70px;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>.b, .d, .f, .h, .j {
+</span><span class='line'>  background-color: red;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="./images/image/QQ20150318-2.png" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Backbone View in View]]></title>
