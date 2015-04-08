@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Do Not Change Backbone Object&#8217;s Cid - Ashley&#8217;s Blog</title>
+  <meta name="author" content="Ashley Yang">
+
+  
+  <meta name="description" content="Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times. Writing all the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/do-not-change-backbone-objects-cid">
+  <link href="/myblog/favicon.png" rel="icon">
+  <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
+  <script src="/myblog/javascripts/modernizr-2.0.js"></script>
+  <script src="/myblog/javascripts/libs/jquery.min.js"></script>
+  <script src="/myblog/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/myblog/">Ashley&#8217;s Blog</a></h1>
+  
+    <h2>A blogging framework for Ashley.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/myblog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pacific0437.github.io/myblog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/myblog/">Blog</a></li>
+  <li><a href="/myblog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Do Not Change Backbone Object&#8217;s Cid</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-08T15:24:15+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:24 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times.</p>
+
+<p>Writing all the things in english is so slow that I will change the language to chinese to describle it.</p>
+
+<h4>1 JQuery Event</h4>
+
+<p>on</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jQuery.fn.extend({
+</span><span class='line'>
+</span><span class='line'>  on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
+</span><span class='line'>          ...... //省略前面的转换代码
+</span><span class='line'>          jQuery.event.add( this, types, fn, data, selector )
+</span><span class='line'>      }
+</span><span class='line'>  })</span></code></pre></td></tr></table></div></figure>
+
+
+<p>add</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>add: function( elem, types, handler, data, selector ) {
+</span><span class='line'>      elemData = data_priv.get( elem );//get the cache of the element
+</span><span class='line'>      eventHandle = elemData.handle = function( e ) {
+</span><span class='line'>          jQuery.event.dispatch.apply( elem, arguments )
+</span><span class='line'>      }
+</span><span class='line'>      elem.addEventListener( type, eventHandle, false );//when event trigger, always run eventHandle/dispatch, do not run handler directly
+</span><span class='line'>      elemData.events[ type ] = jQuery.extend({
+</span><span class='line'>          type: type,
+</span><span class='line'>          origType: origType,
+</span><span class='line'>          data: data,
+</span><span class='line'>          handler: handler,
+</span><span class='line'>          guid: handler.guid,
+</span><span class='line'>          selector: selector,
+</span><span class='line'>          needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
+</span><span class='line'>          namespace: namespaces.join(".")
+</span><span class='line'>      }, handleObjIn ); //the true callback stored in the cache, and it must be runned by the dispatch function 
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dispatch</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch: function( event ) {
+</span><span class='line'>  // Make a writable jQuery.Event from the native event object
+</span><span class='line'>  event = jQuery.event.fix( event );
+</span><span class='line'>  handlers = ( data_priv.get( this, "events" ) || {} )[ event.type ] ;//find the right type event from the cache
+</span><span class='line'>  // Determine handlers
+</span><span class='line'>  handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+</span><span class='line'>  handleObj.handler.apply( matched.elem, args );
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2 Backbone Event delegate</h4>
+
+<p><img src="../../images/image/backbone-events.png" alt="" /></p>
+
+<p>we can see that backbone change the origin event name that we write in events like</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>events:{
+</span><span class='line'>  'click #saveButton1': 'saveForm',
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3 The truth</h4>
+
+<p>someone change the view&rsquo;s cid privately after initialize:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>this.cid = model.cid;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So when the view delegate Events, the undelegateEvents doesn&rsquo;t work as perposes.
+The events who have the old event name could not be found and be off.
+after delegate, some events have a copy of themselves.
+<img src="../../images/image/backbone-events1.png" alt="" />
+Thus, they run two times.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ashley Yang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-04-08T15:24:15+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:24 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/do-not-change-backbone-objects-cid/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/do-not-change-backbone-objects-cid/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/myblog/blog/css-grid-layout/" title="Previous Post: CSS Grid Layout">&laquo; CSS Grid Layout</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/myblog/blog/do-not-change-backbone-objects-cid/">Do Not Change Backbone Object&#8217;s Cid</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/css-grid-layout/">CSS Grid Layout</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/backbone-view-in-view/">Backbone View in View</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/promise-part-2/">Promise Part 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/myblog/blog/promise-part-1/">Promise Part 1</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ashley Yang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

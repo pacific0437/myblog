@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-03-26T09:12:26+08:00</updated>
+  <updated>2015-04-08T16:47:53+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,124 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Do Not Change Backbone Object's Cid]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/do-not-change-backbone-objects-cid/"/>
+    <updated>2015-04-08T15:24:15+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/do-not-change-backbone-objects-cid</id>
+    <content type="html"><![CDATA[<p>Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times.</p>
+
+<p>Writing all the things in english is so slow that I will change the language to chinese to describle it.</p>
+
+<h4>1 JQuery Event</h4>
+
+<p>on</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jQuery.fn.extend({
+</span><span class='line'>
+</span><span class='line'>  on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
+</span><span class='line'>          ...... //省略前面的转换代码
+</span><span class='line'>          jQuery.event.add( this, types, fn, data, selector )
+</span><span class='line'>      }
+</span><span class='line'>  })</span></code></pre></td></tr></table></div></figure>
+
+
+<p>add</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>add: function( elem, types, handler, data, selector ) {
+</span><span class='line'>      elemData = data_priv.get( elem );//get the cache of the element
+</span><span class='line'>      eventHandle = elemData.handle = function( e ) {
+</span><span class='line'>          jQuery.event.dispatch.apply( elem, arguments )
+</span><span class='line'>      }
+</span><span class='line'>      elem.addEventListener( type, eventHandle, false );//when event trigger, always run eventHandle/dispatch, do not run handler directly
+</span><span class='line'>      elemData.events[ type ] = jQuery.extend({
+</span><span class='line'>          type: type,
+</span><span class='line'>          origType: origType,
+</span><span class='line'>          data: data,
+</span><span class='line'>          handler: handler,
+</span><span class='line'>          guid: handler.guid,
+</span><span class='line'>          selector: selector,
+</span><span class='line'>          needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
+</span><span class='line'>          namespace: namespaces.join(".")
+</span><span class='line'>      }, handleObjIn ); //the true callback stored in the cache, and it must be runned by the dispatch function 
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dispatch</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch: function( event ) {
+</span><span class='line'>  // Make a writable jQuery.Event from the native event object
+</span><span class='line'>  event = jQuery.event.fix( event );
+</span><span class='line'>  handlers = ( data_priv.get( this, "events" ) || {} )[ event.type ] ;//find the right type event from the cache
+</span><span class='line'>  // Determine handlers
+</span><span class='line'>  handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+</span><span class='line'>  handleObj.handler.apply( matched.elem, args );
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2 Backbone Event delegate</h4>
+
+<p><img src="../../images/image/backbone-events.png" alt="" /></p>
+
+<p>we can see that backbone change the origin event name that we write in events like</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>events:{
+</span><span class='line'>  'click #saveButton1': 'saveForm',
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3 The truth</h4>
+
+<p>someone change the view&rsquo;s cid privately after initialize:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>this.cid = model.cid;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So when the view delegate Events, the undelegateEvents doesn&rsquo;t work as perposes.
+The events who have the old event name could not be found and be off.
+after delegate, some events have a copy of themselves.
+<img src="../../images/image/backbone-events1.png" alt="" />
+Thus, they run two times.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CSS Grid Layout]]></title>
