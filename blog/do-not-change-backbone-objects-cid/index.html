@@ -9,7 +9,7 @@
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times. Writing all the &hellip;">
+  <meta name="description" content="Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times. 1 JQuery Event on 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,8 +81,6 @@
 
 <div class="entry-content"><p>Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times.</p>
 
-<p>Writing all the things in english is so slow that I will change the language to chinese to describle it.</p>
-
 <h4>1 JQuery Event</h4>
 
 <p>on</p>
@@ -97,7 +95,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>jQuery.fn.extend({
 </span><span class='line'>
 </span><span class='line'>  on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
-</span><span class='line'>          ...... //省略前面的转换代码
+</span><span class='line'>          ...... //ignore some code
 </span><span class='line'>          jQuery.event.add( this, types, fn, data, selector )
 </span><span class='line'>      }
 </span><span class='line'>  })</span></code></pre></td></tr></table></div></figure>
@@ -186,9 +184,11 @@
 
 <p>So when the view delegate Events, the undelegateEvents doesn&rsquo;t work as perposes.
 The events who have the old event name could not be found and be off.
-after delegate, some events have a copy of themselves.
-<img src="../../images/image/backbone-events1.png" alt="" />
-Thus, they run two times.</p>
+after delegate, some events have a copy of themselves.</p>
+
+<p><img src="../../images/image/backbone-events1.png" alt="" /></p>
+
+<p>Thus, they run two times.</p>
 </div>
 
 
