@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-04-08T16:52:11+08:00</updated>
+  <updated>2015-04-08T16:54:50+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -121,7 +121,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>this.cid = model.cid;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>So when the view delegate Events, the undelegateEvents doesn&rsquo;t work as perposes.
+<p>So when the view delegate Events, the undelegateEvents doesn&rsquo;t work as purposes.
 The events who have the old event name could not be found and be off.
 after delegate, some events have a copy of themselves.</p>
 
