@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-04-08T16:54:50+08:00</updated>
+  <updated>2015-04-23T18:07:52+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Some Standard Events]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/some-standard-events/"/>
+    <updated>2015-04-15T14:00:04+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/some-standard-events</id>
+    <content type="html"><![CDATA[<h2>blur</h2>
+
+<p>FocusEvent<br/>
+DOM  L3<br/>
+An element has lost focus (does not bubble).</p>
+
+<h2>change</h2>
+
+<p>Event <br/>
+DOM L2, HTML5 <br/>
+An element loses focus and its value changed since gaining focus.</p>
+
+<h2>click</h2>
+
+<p>MouseEvent<br/>
+DOM L3<br/>
+A pointing device button has been pressed and released on an element.</p>
+
+<h2>input</h2>
+
+<p>Event <br/>
+HTML5 <br/>
+The value of an element changes or the content of an element with the attribute contenteditable is modified.
+IE9 support</p>
+
+<h2>select</h2>
+
+<p>UIEvent
+DOM L3<br/>
+Some text is being selected.</p>
+
+<p><strong>No business with input select element</strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Do Not Change Backbone Object's Cid]]></title>
@@ -125,7 +165,7 @@
 The events who have the old event name could not be found and be off.
 after delegate, some events have a copy of themselves.</p>
 
-<p><img src="../../images/image/backbone-events1.png" alt="" /></p>
+<p><img src="./myblog/images/image/backbone-events1.png" alt="" /></p>
 
 <p>Thus, they run two times.</p>
 ]]></content>

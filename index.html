@@ -9,7 +9,9 @@
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="Yesterday when I debugged some old JS code, I found an interesting thing that some event&rsquo;s callback function ran two times. 1 JQuery Event on 1 &hellip;">
+  <meta name="description" content="blur FocusEvent
+DOM L3
+An element has lost focus (does not bubble). change Event DOM L2, HTML5 An element loses focus and its value changed since &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -60,6 +62,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/myblog/blog/some-standard-events/">Some Standard Events</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-15T14:00:04+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:00 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>blur</h2>
+
+<p>FocusEvent<br/>
+DOM  L3<br/>
+An element has lost focus (does not bubble).</p>
+
+<h2>change</h2>
+
+<p>Event <br/>
+DOM L2, HTML5 <br/>
+An element loses focus and its value changed since gaining focus.</p>
+
+<h2>click</h2>
+
+<p>MouseEvent<br/>
+DOM L3<br/>
+A pointing device button has been pressed and released on an element.</p>
+
+<h2>input</h2>
+
+<p>Event <br/>
+HTML5 <br/>
+The value of an element changes or the content of an element with the attribute contenteditable is modified.
+IE9 support</p>
+
+<h2>select</h2>
+
+<p>UIEvent
+DOM L3<br/>
+Some text is being selected.</p>
+
+<p><strong>No business with input select element</strong></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -189,7 +251,7 @@
 The events who have the old event name could not be found and be off.
 after delegate, some events have a copy of themselves.</p>
 
-<p><img src="../../images/image/backbone-events1.png" alt="" /></p>
+<p><img src="./myblog/images/image/backbone-events1.png" alt="" /></p>
 
 <p>Thus, they run two times.</p>
 </div>
@@ -1157,127 +1219,6 @@ DOM 替换
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/myblog/blog/regex-review/">Regex Review</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-21T20:26:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:26 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>复习 regexp</h2>
-
-<p>/hello world/</p>
-
-<p>/hello world\b/ 其实还有\B</p>
-
-<p>/^hello world$/</p>
-
-<p>\w [A-Za-z0-9_]</p>
-
-<hr />
-
-<p>/g global</p>
-
-<p>/i ignore</p>
-
-<p>/m multiple</p>
-
-<hr />
-
-<p>exec
-通过( )分组匹配</p>
-
-<pre><code>var osVersion = 'Ubuntu 8';//其中的8表示系统主版本号  
-re=/^[a-z]+\s+(\d+)$/i;//用()来创建子匹配  
-arr =re.exec(osVersion);  
-console.log(arr[0]);//整个osVersion,也就是正则表达式的完整匹配
-console.log(arr[1]);//分组 第一个括号所匹配的  8
-</code></pre>
-
-<p>反向引用 先挖个大坑 To be continued&hellip;&hellip;..</p>
-
-<p>非贪婪匹配</p>
-
-<ul>
-<li>??</li>
-<li>+?</li>
-<li>*?</li>
-<li>{1,4}?</li>
-</ul>
-
-
-<hr />
-
-<h4>分组相关（）</h4>
-
-<ul>
-<li><p>/([&lsquo;&ldquo;])[^&rsquo;&rdquo;]*\1/</p></li>
-<li><p>(?:&hellip;)  只组合不记忆</p></li>
-<li><p>(?=&hellip;) 先行断言 指定一个位置 零宽 并非真正匹配
-/Java([Ss]cript)(?=:)/ 可以匹配&#8221;Javascript: The Definitive Guide&#8221;中的Javascript 不包含冒号 但是必须要有！</p></li>
-<li><p>(?!&hellip;) 负向先行断言</p></li>
-</ul>
-
-
-<h4>String方法</h4>
-
-<ul>
-<li>search</li>
-<li>replace</li>
-<li>match</li>
-<li>split</li>
-</ul>
-
-
-<h4>RexExp方法</h4>
-
-<ul>
-<li>exec</li>
-<li>test</li>
-</ul>
-
-
-<p>通过上面的学习我尝试去分析一下Jquery源码中一个正则表达式</p>
-
-<pre><code>rquickExpr = /^(?:\s*(&lt;[\w\W]+&gt;)[^&gt;]*|#([\w-]*))$/
-</code></pre>
-
-<p>最外面包裹的的恰好是代表完全匹配的/^&hellip;$/</p>
-
-<p>次外层只组合不记忆(?:&hellip;)</p>
-
-<ul>
-<li>\s*   <strong>一些空格</strong></li>
-<li>(&lt;[\w\W]+>)  <strong>Tag标签</strong></li>
-<li>[^>]*  <strong>任意非>字符</strong></li>
-<li>| <strong>或者</strong></li>
-<li>#([\w-]*)) <strong>#+任意字符或者-</strong></li>
-</ul>
-
-
-<p>所以该正则匹配的是 Tag标签  或者 #开头的字符串（获取id用吗？）。
-分析的是否正确等下一篇继续介绍jQuery源码的blog再分析吧</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/myblog/posts/2">&larr; Older</a>
@@ -1293,6 +1234,10 @@ console.log(arr[1]);//分组 第一个括号所匹配的  8
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/myblog/blog/some-standard-events/">Some Standard Events</a>
+      </li>
+    
+      <li class="post">
         <a href="/myblog/blog/do-not-change-backbone-objects-cid/">Do Not Change Backbone Object&#8217;s Cid</a>
       </li>
     
@@ -1306,10 +1251,6 @@ console.log(arr[1]);//分组 第一个括号所匹配的  8
     
       <li class="post">
         <a href="/myblog/blog/promise-part-2/">Promise Part 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/myblog/blog/promise-part-1/">Promise Part 1</a>
       </li>
     
   </ul>
