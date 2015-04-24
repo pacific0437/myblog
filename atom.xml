@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-04-24T09:18:05+08:00</updated>
+  <updated>2015-04-24T09:21:01+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -141,7 +141,7 @@ Some text is being selected.</p>
 
 <h4>2 Backbone Event delegate</h4>
 
-<p><img src="http://pacific0437.github.io/myblog/myblog/images/image/backbone-events.png" alt="" /></p>
+<p><img src="http://pacific0437.github.io/myblog/images/image/backbone-events.png" alt="" /></p>
 
 <p>we can see that backbone change the origin event name that we write in events like</p>
 
@@ -202,7 +202,7 @@ after delegate, some events have a copy of themselves.</p>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="../../images/image/QQ20150318-2.png" alt="" /></p>
+<p><img src="http://pacific0437.github.io/myblog/images/image/QQ20150318-2.png" alt="" /></p>
 
 <h3>Grid Area</h3>
 
@@ -312,7 +312,7 @@ after delegate, some events have a copy of themselves.</p>
 
 <h5>looks like this</h5>
 
-<p><img src="../../images/image/grid-area.jpg" alt="" /></p>
+<p><img src="http://pacific0437.github.io/myblog/images/image/grid-area.jpg" alt="" /></p>
 
 <h3>Repeat and Span</h3>
 
@@ -1187,8 +1187,8 @@ console.log(arr[1]);//分组 第一个括号所匹配的  8
 <p>如果你在js文件的某处打断点，并且在控制台查看document.body你只能看到该js文件位置之前的dom元素。
 parseHTML 和paint 貌似都有这种打断的功能（浏览器单线程的原因？）</p>
 
-<p><img src="../../images/image/1.png" alt="" />
-<img src="../../images/image/2.png" alt="" /></p>
+<p><img src="http://pacific0437.github.io/myblog/images/image/1.png" alt="" />
+<img src="http://pacific0437.github.io/myblog/images/image/2.png" alt="" /></p>
 ]]></content>
   </entry>
   
