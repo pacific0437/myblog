@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-04-24T09:16:19+08:00</updated>
+  <updated>2015-04-24T09:18:05+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -165,7 +165,7 @@ Some text is being selected.</p>
 The events who have the old event name could not be found and be off.
 after delegate, some events have a copy of themselves.</p>
 
-<p><img src="http://pacific0437.github.io/myblog/myblog/images/image/backbone-events1.png" alt="" /></p>
+<p><img src="http://pacific0437.github.io/myblog/images/image/backbone-events1.png" alt="" /></p>
 
 <p>Thus, they run two times.</p>
 ]]></content>
