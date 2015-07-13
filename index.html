@@ -9,7 +9,16 @@
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="学习 Git 的第一条规则就是，你不能谈及自己在学习 Git1。因为这个工具由 Linus Torvalds 主导的 Linux 内核社区设计开发，并且由最酷最炫的 GitHub 发扬光大，从头到脚围绕着高大上的光环，全世界聪明的程序员都会用（至少声称自己会用）它来管理自己的代码。 &hellip;">
+  <meta name="description" content="HTML Templates 1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;template id="radiogroup"&gt; &lt;input type="radio" name=""&gt; &lt;label&gt;&lt;/label&gt; &lt;input type=" &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -60,6 +69,123 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/myblog/blog/web-component/">Web Component</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-13T09:37:34+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:37 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h5>HTML Templates</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;template id="radiogroup"&gt;
+</span><span class='line'>  &lt;input type="radio" name=""&gt; &lt;label&gt;&lt;/label&gt;
+</span><span class='line'>  &lt;input type="radio" name=""&gt; &lt;label&gt;&lt;/label&gt;
+</span><span class='line'>  &lt;style&gt;
+</span><span class='line'>  label{
+</span><span class='line'>    color:red;
+</span><span class='line'>    }
+</span><span class='line'>  &lt;/style&gt;
+</span><span class='line'>&lt;/template&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>Custom Elements and Shadow DOM</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var template = document.querySelector('#radiogroup');
+</span><span class='line'>var appInfoProto = Object.create(HTMLElement.prototype);
+</span><span class='line'>appInfoProto.createdCallback = function() {
+</span><span class='line'>    var root = this.createShadowRoot();
+</span><span class='line'>    // template.content
+</span><span class='line'>    var clone = template.content.cloneNode(true);
+</span><span class='line'>    var myInputNodeList = clone.querySelectorAll('input');
+</span><span class='line'>    for (var i = 0; i &lt; myInputNodeList.length; ++i) {
+</span><span class='line'>      var item = myInputNodeList.item(i);
+</span><span class='line'>      item.setAttribute('id',this.getAttribute('data'+i));
+</span><span class='line'>      item.setAttribute('name',this.getAttribute('name'));
+</span><span class='line'>    }
+</span><span class='line'>    var myLabelNodeList = clone.querySelectorAll('label');
+</span><span class='line'>    for (var i = 0; i &lt; myLabelNodeList.length; ++i) {
+</span><span class='line'>      var item = myLabelNodeList.item(i);
+</span><span class='line'>      item.setAttribute('for',this.getAttribute('data'+i));
+</span><span class='line'>      item.innerHTML = this.getAttribute('message'+i)
+</span><span class='line'>    }
+</span><span class='line'>    root.appendChild(clone);
+</span><span class='line'>
+</span><span class='line'>}
+</span><span class='line'>document.registerElement('my-radiogroup', {
+</span><span class='line'>    prototype: appInfoProto
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>Use Custom Question in your HTML</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;my-radiogroup id="group" data0="id0" message0="player0" data1="id1" message1="player1" name="basketball"&gt;&lt;/my-radiogroup&gt;
+</span><span class='line'>&lt;label for=""&gt; I am innocence&lt;/label&gt;
+</span><span class='line'>&lt;my-radiogroup id="group" data0="leon" message0="Messi" data1="me" message1="Ashley" name="football"&gt;&lt;/my-radiogroup&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;my-radiogroup id="group" data0="A" message0="A" data1="B" message1="B" data2="C" message2="C" data3="D" message3="D"name="Charctor"&gt;&lt;/my-radiogroup&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1022,97 +1148,6 @@ DOM 替换
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/myblog/blog/jquery-find-and-prevobject/">JQuery Find and prevObject</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-27T23:09:08+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:09 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>jQuery内部维护着一个jQuery对象栈。每个遍历方法都会找到一组新元素（一个jQuery对象），然后jQuery会把这组元素推入到栈中。
-每个jQuery对象都有三个属性：context、selector和prevObject，其中的prevObject属性就指向这个对象栈中的前一个对象，而通过这个属性可以回溯到最初的DOM元素集中。
-一般通过end()以及addBack()方法实现内部栈的调用
-例如$(&lsquo;aaa&rsquo;).find(&lsquo;div&rsquo;).css(&hellip;).end() //从子 div 那里回来了</p>
-
-<pre><code>find: function( selector ) {
-    var i,
-        len = this.length,
-        ret = [],
-        self = this;
-    /*
-     *如果不是 string，那就应该是一个 Jquery 对象
-     *过滤或者说寻找到该对象的同时通过 pushStack 把该对象压入jQuery对象栈的顶端
-     */
-    if ( typeof selector !== "string" ) {
-        return this.pushStack( jQuery( selector ).filter(function() {
-            for ( i = 0; i &lt; len; i++ ) {
-                if ( jQuery.contains( self[ i ], this ) ) {
-                    return true;
-                }
-            }
-        }) );
-    }
-
-    for ( i = 0; i &lt; len; i++ ) {
-    //jQuery.find 等于 sizzle，sizzle 的内容以后再分析。结果在 ret 中呢
-        jQuery.find( selector, self[ i ], ret );
-    }
-
-    // Needed because $( selector, context ) becomes $( context ).find( selector )
-    // 没看懂，为什么会有重复？
-    // 但是pushStack的执行是毋庸置疑的
-    ret = this.pushStack( len &gt; 1 ? jQuery.unique( ret ) : ret );
-    ret.selector = this.selector ? this.selector + " " + selector : selector;
-    return ret;
-}
-</code></pre>
-
-<p>然后就是 pushStack 和 end 方法</p>
-
-<pre><code>    pushStack: function( elems ) {
-
-    // Build a new jQuery matched element set
-    //太犀利了，没看懂这数组的合并
-    var ret = jQuery.merge( this.constructor(), elems );
-
-    // Add the old object onto the stack (as a reference)
-    //做了一次关键的链接，把执行 find 的 JQuery 对象赋给了返回结果的prevObject
-    //通俗点说就是我知道了我的上家是谁
-    ret.prevObject = this;
-    ret.context = this.context;
-
-    // Return the newly-formed element set
-    return ret;
-},
-    end: function() {
-    //返回我的上家
-    return this.prevObject || this.constructor(null);
-}
-</code></pre>
-
-<p>还是有不明白的地方以后再回过来看吧
-这些 Jquery 的解读大部分都是从 imooc 上 Aaron 的<a href="http://www.imooc.com/learn/172">课程</a>中学来的</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/myblog/posts/2">&larr; Older</a>
@@ -1128,6 +1163,10 @@ DOM 替换
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/myblog/blog/web-component/">Web Component</a>
+      </li>
+    
+      <li class="post">
         <a href="/myblog/blog/css-grid-layout1/">Talk About Git</a>
       </li>
     
@@ -1141,10 +1180,6 @@ DOM 替换
     
       <li class="post">
         <a href="/myblog/blog/css-grid-layout/">CSS Grid Layout</a>
-      </li>
-    
-      <li class="post">
-        <a href="/myblog/blog/backbone-view-in-view/">Backbone View in View</a>
       </li>
     
   </ul>
