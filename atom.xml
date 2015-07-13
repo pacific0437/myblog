@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-07-13T09:44:25+08:00</updated>
+  <updated>2015-07-13T09:45:19+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Web Component]]></title>
+    <title type="html"><![CDATA[Web Components]]></title>
     <link href="http://pacific0437.github.io/myblog/blog/web-component/"/>
     <updated>2015-07-13T09:37:34+08:00</updated>
     <id>http://pacific0437.github.io/myblog/blog/web-component</id>
