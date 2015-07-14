@@ -5,21 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Markdown Review - Ashley&#8217;s Blog</title>
+  <title>Web Socket - Ashley&#8217;s Blog</title>
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="一级标题 2 3 4 5 6 _ First Second
-Third
-fourth 4.1 4.2 4.3 fivth
-sixth
-seventh another list 111
-222
-333
-444
-555 baidu cnblog 加粗
-变斜了
-">
+  <meta name="description" content="Client var a = new WebSocket("ws://localhost:8080/abcd");
+a.onmessage = function(event){ var data = event.data; console.log(event); console.log(data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,7 +19,7 @@ seventh another list 111
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/markdown-review">
+  <link rel="canonical" href="http://pacific0437.github.io/myblog/blog/web-socket">
   <link href="/myblog/favicon.png" rel="icon">
   <link href="/myblog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/myblog/atom.xml" rel="alternate" title="Ashley's Blog" type="application/atom+xml">
@@ -73,7 +64,7 @@ seventh another list 111
   
   <header>
     
-      <h1 class="entry-title">Markdown Review</h1>
+      <h1 class="entry-title">Web Socket</h1>
     
     
       <p class="meta">
@@ -82,59 +73,64 @@ seventh another list 111
 
 
 
-<time class='entry-date' datetime='2014-11-17T17:47:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:47 pm</span></time>
+<time class='entry-date' datetime='2015-07-14T14:47:19+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:47 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h1>一级标题</h1>
+<div class="entry-content"><h2>Client</h2>
 
-<h2>2</h2>
+<pre><code>var a = new WebSocket("ws://localhost:8080/abcd");
+a.onmessage = function(event){
+    var data = event.data;
+    console.log(event);
+    console.log(data);
+};
+a.onopen = function(){
+    console.log('open');
+}
+a.onclose = function(){
+    console.log('close');
+}
+//a.send("data");
+//a.close();
+</code></pre>
 
-<h3>3</h3>
+<h2>Server</h2>
 
-<h4>4</h4>
+<p>Use <a href="https://github.com/websockets/ws">WS</a></p>
 
-<h5>5</h5>
+<p>I didn&rsquo;t use Socket.io</p>
 
-<h6>6</h6>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var WebSocketServer = require('ws').Server
+</span><span class='line'>wss = new WebSocketServer({ port: 8080, path:'/abcd' });
+</span><span class='line'>
+</span><span class='line'>wss.on('connection', function connection(ws) {
+</span><span class='line'>  ws.on('message', function incoming(message) {
+</span><span class='line'>console.log('received: %s', message);
+</span><span class='line'>ws.send('I received' + message + 'is that you sended?')
+</span><span class='line'>ws.send('connection will close in 8s');
+</span><span class='line'>setTimeout(function(){ws.close()},8000)
+</span><span class='line'>  });
+</span><span class='line'>
+</span><span class='line'>  ws.send('connection works fine');
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
 
-<p>_ First</p>
-
-<ul>
-<li>Second</li>
-<li>Third</li>
-<li>fourth
-
-<ol>
-<li> 4.1</li>
-<li> 4.2</li>
-<li> 4.3</li>
-</ol>
-</li>
-<li>fivth</li>
-<li>sixth</li>
-<li>seventh</li>
-</ul>
-
-
-<p>another list</p>
-
-<ol>
-<li>111</li>
-<li>222</li>
-<li>333</li>
-<li>444</li>
-<li>555</li>
-</ol>
-
-
-<p><a href="http://www.baidu.com">baidu</a> <a href="http://cnblogs.com">cnblog</a>
-<img src="http://ww4.sinaimg.cn/bmiddle/aa397b7fjw1dzplsgpdw5j.jpg" alt="" />
-<strong>加粗</strong>
-<em>变斜了</em></p>
 </div>
 
 
@@ -150,7 +146,7 @@ seventh another list 111
 
 
 
-<time class='entry-date' datetime='2014-11-17T17:47:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:47 pm</span></time>
+<time class='entry-date' datetime='2015-07-14T14:47:19+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:47 pm</span></time>
       
 
 
@@ -158,7 +154,7 @@ seventh another list 111
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/markdown-review/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/markdown-review/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://pacific0437.github.io/myblog/blog/web-socket/" data-via="" data-counturl="http://pacific0437.github.io/myblog/blog/web-socket/" >Tweet</a>
   
   
   
@@ -167,10 +163,8 @@ seventh another list 111
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/myblog/blog/isomorphic/" title="Previous Post: Isomorphic Javascript">&laquo; Isomorphic Javascript</a>
+        <a class="basic-alignment left" href="/myblog/blog/web-component/" title="Previous Post: Web Components">&laquo; Web Components</a>
       
-      
-        <a class="basic-alignment right" href="/myblog/blog/how-browser-parse-html/" title="Next Post: how browser parse html">how browser parse html &raquo;</a>
       
     </p>
   </footer>

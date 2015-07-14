@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-07-13T09:45:19+08:00</updated>
+  <updated>2015-07-14T14:53:30+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Web Socket]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/web-socket/"/>
+    <updated>2015-07-14T14:47:19+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/web-socket</id>
+    <content type="html"><![CDATA[<h2>Client</h2>
+
+<pre><code>var a = new WebSocket("ws://localhost:8080/abcd");
+a.onmessage = function(event){
+    var data = event.data;
+    console.log(event);
+    console.log(data);
+};
+a.onopen = function(){
+    console.log('open');
+}
+a.onclose = function(){
+    console.log('close');
+}
+//a.send("data");
+//a.close();
+</code></pre>
+
+<h2>Server</h2>
+
+<p>Use <a href="https://github.com/websockets/ws">WS</a></p>
+
+<p>I didn&rsquo;t use Socket.io</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var WebSocketServer = require('ws').Server
+</span><span class='line'>wss = new WebSocketServer({ port: 8080, path:'/abcd' });
+</span><span class='line'>
+</span><span class='line'>wss.on('connection', function connection(ws) {
+</span><span class='line'>  ws.on('message', function incoming(message) {
+</span><span class='line'>console.log('received: %s', message);
+</span><span class='line'>ws.send('I received' + message + 'is that you sended?')
+</span><span class='line'>ws.send('connection will close in 8s');
+</span><span class='line'>setTimeout(function(){ws.close()},8000)
+</span><span class='line'>  });
+</span><span class='line'>
+</span><span class='line'>  ws.send('connection works fine');
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web Components]]></title>

@@ -9,16 +9,8 @@
   <meta name="author" content="Ashley Yang">
 
   
-  <meta name="description" content="HTML Templates 1
-2
-3
-4
-5
-6
-7
-8
-9
-&lt;template id="radiogroup"&gt; &lt;input type="radio" name=""&gt; &lt;label&gt;&lt;/label&gt; &lt;input type=" &hellip;">
+  <meta name="description" content="Client var a = new WebSocket("ws://localhost:8080/abcd");
+a.onmessage = function(event){ var data = event.data; console.log(event); console.log(data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +61,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/myblog/blog/web-socket/">Web Socket</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-14T14:47:19+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Client</h2>
+
+<pre><code>var a = new WebSocket("ws://localhost:8080/abcd");
+a.onmessage = function(event){
+    var data = event.data;
+    console.log(event);
+    console.log(data);
+};
+a.onopen = function(){
+    console.log('open');
+}
+a.onclose = function(){
+    console.log('close');
+}
+//a.send("data");
+//a.close();
+</code></pre>
+
+<h2>Server</h2>
+
+<p>Use <a href="https://github.com/websockets/ws">WS</a></p>
+
+<p>I didn&rsquo;t use Socket.io</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var WebSocketServer = require('ws').Server
+</span><span class='line'>wss = new WebSocketServer({ port: 8080, path:'/abcd' });
+</span><span class='line'>
+</span><span class='line'>wss.on('connection', function connection(ws) {
+</span><span class='line'>  ws.on('message', function incoming(message) {
+</span><span class='line'>console.log('received: %s', message);
+</span><span class='line'>ws.send('I received' + message + 'is that you sended?')
+</span><span class='line'>ws.send('connection will close in 8s');
+</span><span class='line'>setTimeout(function(){ws.close()},8000)
+</span><span class='line'>  });
+</span><span class='line'>
+</span><span class='line'>  ws.send('connection works fine');
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1080,74 +1151,6 @@ DOM 替换
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/myblog/blog/jquery-merge/">JQuery Merge</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-28T14:03:13+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:03 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>merge: function( first, second ) {
-    var len = +second.length,
-        j = 0,
-        i = first.length;
-
-    for ( ; j &lt; len; j++ ) {
-        first[ i++ ] = second[ j ];
-    }
-
-    first.length = i;
-
-    return first;
-}
-</code></pre>
-
-<p>first 和 second 都是数组的话非常好理解，如果是 JQuery 对象其实也是可以的，因为 JQeury 对象本身也具有类似数组的特性</p>
-
-<pre><code>var ret = jQuery.merge( this.constructor(), elems );
-</code></pre>
-
-<p>所以昨天代码pushStack中解析的这一句，实际上是构造了一个全新的 JQuery 元素然后把 elems 赋给了他的 dom 属性。
-再举一个 get 和 eq 区别的例子，我们都知道 get 返回的是 dom，eq 返回的是包装过后的 jquery 元素，这个其实也是通过 pushStack 来实现的</p>
-
-<pre><code>eq: function( i ) {
-    var len = this.length,
-        j = +i + ( i &lt; 0 ? len : 0 );
-    //this[i] 为 dom 元素，通过 pushStack-&gt;merge包装成为了 JQuery 元素
-    return this.pushStack( j &gt;= 0 &amp;&amp; j &lt; len ? [ this[j] ] : [] );
-
-}
-</code></pre>
-
-<h4>JQuery.slice</h4>
-
-<pre><code>slice: function() {
-    return this.pushStack( slice.apply( this, arguments ) );
-}
-</code></pre>
-
-<p>arguments传进去后内部调用Array.slice对 JQuery 数组做分割，将结果（一个 dom 数组）传入 pushStack 做进一步处理。最终返回分割后的 JQuery 对象。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/myblog/posts/2">&larr; Older</a>
@@ -1163,6 +1166,10 @@ DOM 替换
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/myblog/blog/web-socket/">Web Socket</a>
+      </li>
+    
+      <li class="post">
         <a href="/myblog/blog/web-component/">Web Components</a>
       </li>
     
@@ -1176,10 +1183,6 @@ DOM 替换
     
       <li class="post">
         <a href="/myblog/blog/do-not-change-backbone-objects-cid/">Do Not Change Backbone Object&#8217;s Cid</a>
-      </li>
-    
-      <li class="post">
-        <a href="/myblog/blog/css-grid-layout/">CSS Grid Layout</a>
       </li>
     
   </ul>
