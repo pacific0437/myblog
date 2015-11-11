@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-07-14T14:53:30+08:00</updated>
+  <updated>2015-11-12T01:05:17+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -12,6 +12,618 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Redux]]></title>
+    <link href="http://pacific0437.github.io/myblog/blog/redux/"/>
+    <updated>2015-11-11T21:04:32+08:00</updated>
+    <id>http://pacific0437.github.io/myblog/blog/redux</id>
+    <content type="html"><![CDATA[<h1>Redux</h1>
+
+<h3>Redux 三大原则</h3>
+
+<ul>
+<li>单一数据源。 整个应用的 state 被储存在一棵 object tree 中，它只有一个单一的 store 。</li>
+<li>State 是只读的。 惟一改变 state 的办法就是触发 action，action 是一个描述要发生什么的对象。</li>
+<li>纯函数的形式来执行修改。 为了描述 action 如何改变 state tree ，你需要编写 reducers。</li>
+</ul>
+
+
+<h3>同 Flux 的关系</h3>
+
+<p>Redux 没有 dispatcher 的概念，它依赖纯函数来替代事件处理器。Redux 设想你永远不会变动你的数据。
+细节有所不同：分别体现在 reducer 和 state 上。</p>
+
+<h3>Action</h3>
+
+<p>Actions 是把数据从应用传到 store 的有效载荷。它是 store 数据的惟一来源。
+Actions 表明有事情发生了，包含了更新 state 所需要的足够多的信息。
+Action 本质是 JavaScript 普通对象。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>      type: 'ADD_TODO',
+</span><span class='line'>      text: 'Build my first Redux app'
+</span><span class='line'>}
+</span><span class='line'>{
+</span><span class='line'>    type: 'DELETE_TODO',
+</span><span class='line'>    index: 5
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Action 创建函数</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function addTodo(text) {
+</span><span class='line'>  return {
+</span><span class='line'>     type: ADD_TODO,
+</span><span class='line'>     text
+</span><span class='line'>   };
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Reducer</h3>
+
+<p>reducer 就是一个函数，接收旧的 state 和 action，返回新的 state。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(previousState, action) =&gt; newState</span></code></pre></td></tr></table></div></figure>
+
+
+<p>不要修改 state。</p>
+
+<p>在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  visibilityFilter: 'SHOW_ALL',
+</span><span class='line'>  todos: [{
+</span><span class='line'>    text: 'Consider using Redux',
+</span><span class='line'>    completed: true,
+</span><span class='line'>  }, {
+</span><span class='line'>    text: 'Keep all state in a single tree',
+</span><span class='line'>    completed: false
+</span><span class='line'>  }]
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function todoApp(state = initialState, action) {
+</span><span class='line'>  switch (action.type) {
+</span><span class='line'>  case SET_VISIBILITY_FILTER:
+</span><span class='line'>    return Object.assign({}, state, {
+</span><span class='line'>      visibilityFilter: action.filter
+</span><span class='line'>    });
+</span><span class='line'>  case ADD_TODO:
+</span><span class='line'>    return Object.assign({}, state, {
+</span><span class='line'>      todos: [...state.todos, {
+</span><span class='line'>        text: action.text,
+</span><span class='line'>        completed: false
+</span><span class='line'>      }]
+</span><span class='line'>    });
+</span><span class='line'>  case COMPLETE_TODO:
+</span><span class='line'>    return Object.assign({}, state, {
+</span><span class='line'>      todos: [
+</span><span class='line'>        ...state.todos.slice(0, action.index),
+</span><span class='line'>        Object.assign({}, state.todos[action.index], {
+</span><span class='line'>          completed: true
+</span><span class='line'>        }),
+</span><span class='line'>        ...state.todos.slice(action.index + 1)
+</span><span class='line'>      ]
+</span><span class='line'>    });
+</span><span class='line'>  default:
+</span><span class='line'>    return state;
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>combineReducers</p>
+
+<p>一个函数来做为主 reducer，它调用多个子 reducer 分别处理 state 中的一部分数据，然后再把这些数据合成一个大的单一对象。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>function todoApp(state = {}, action) {
+</span><span class='line'>  return {
+</span><span class='line'>    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+</span><span class='line'>    todos: todos(state.todos, action)
+</span><span class='line'>  };
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>function todos(state = [], action) {
+</span><span class='line'>  switch (action.type) {
+</span><span class='line'>  case ADD_TODO:
+</span><span class='line'>    return [...state, {
+</span><span class='line'>      text: action.text,
+</span><span class='line'>      completed: false
+</span><span class='line'>    }];
+</span><span class='line'>  case COMPLETE_TODO:
+</span><span class='line'>    return [
+</span><span class='line'>      ...state.slice(0, action.index),
+</span><span class='line'>      Object.assign({}, state[action.index], {
+</span><span class='line'>        completed: true
+</span><span class='line'>      }),
+</span><span class='line'>      ...state.slice(action.index + 1)    
+</span><span class='line'>    ];
+</span><span class='line'>  default:
+</span><span class='line'>    return state;
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>function visibilityFilter(state = SHOW_ALL, action) {
+</span><span class='line'>  switch (action.type) {
+</span><span class='line'>  case SET_VISIBILITY_FILTER:
+</span><span class='line'>    return action.filter;
+</span><span class='line'>  default:
+</span><span class='line'>    return state;
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后，Redux 提供了 combineReducers() 工具类来做上面 todoApp 做的事情，这样就能消灭一些样板代码了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import { combineReducers } from 'redux';
+</span><span class='line'>
+</span><span class='line'>const todoApp = combineReducers({
+</span><span class='line'>  visibilityFilter,
+</span><span class='line'>  todos
+</span><span class='line'>});
+</span><span class='line'>
+</span><span class='line'>export default todoApp;</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Store</h3>
+
+<p>Store 就是把action and reducers联系到一起的对象。
+Store 有以下职责：</p>
+
+<ul>
+<li>维持应用的 state；</li>
+<li>提供 getState() 方法获取 state；</li>
+<li>提供 dispatch(action) 方法更新 state；</li>
+<li>通过 subscribe(listener) 注册监听器。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import { createStore } from 'redux';
+</span><span class='line'>import todoApp from './reducers';
+</span><span class='line'>
+</span><span class='line'>let store = createStore(todoApp);
+</span><span class='line'>
+</span><span class='line'>let unsubscribe = store.subscribe(() =&gt;
+</span><span class='line'>  console.log(store.getState())
+</span><span class='line'>);
+</span><span class='line'>
+</span><span class='line'>// 发起一系列 action
+</span><span class='line'>store.dispatch(addTodo('Learn about actions'));
+</span><span class='line'>store.dispatch(addTodo('Learn about reducers'));
+</span><span class='line'>store.dispatch(addTodo('Learn about store'));
+</span><span class='line'>store.dispatch(completeTodo(0));
+</span><span class='line'>store.dispatch(completeTodo(1));
+</span><span class='line'>store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED));
+</span><span class='line'>
+</span><span class='line'>// 停止监听 state 更新
+</span><span class='line'>unsubscribe();</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>数据流</h3>
+
+<p><img src="http://pacific0437.github.io/myblog/images/image/Redux.png" alt="" /></p>
+
+<ul>
+<li>调用 store.dispatch(action)。</li>
+<li>Redux store 调用传入的 reducer 函数。</li>
+<li>根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。</li>
+<li>Redux store 保存了根 reducer 返回的完整 state 树。</li>
+</ul>
+
+
+<h3>With React</h3>
+
+<p>Redux 和 React 之间没有关系。Redux 支持 React、Angular、Ember、jQuery 甚至纯 JavaScript。
+Redux 还是和 React 和 Deku 这类框架搭配起来用最好，因为这类框架允许你以 state 函数的形式来描述界面，Redux 通过 action 的形式来发起 state 变化。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install --save react-redux</span></code></pre></td></tr></table></div></figure>
+
+
+<p>只在最顶层组件里使用 Redux。</p>
+
+<p>内部组件应该像木偶一样保持“呆滞”，所有数据都通过 props 传入。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import React from 'react'
+</span><span class='line'>import { render } from 'react-dom'
+</span><span class='line'>import { createStore } from 'redux'
+</span><span class='line'>import { Provider } from 'react-redux'
+</span><span class='line'>import App from './containers/App'
+</span><span class='line'>import todoApp from './reducers'
+</span><span class='line'>
+</span><span class='line'>let store = createStore(todoApp)
+</span><span class='line'>
+</span><span class='line'>let rootElement = document.getElementById('root')
+</span><span class='line'>render(
+</span><span class='line'>  &lt;Provider store={store}&gt;
+</span><span class='line'>    &lt;App /&gt;
+</span><span class='line'>  &lt;/Provider&gt;,
+</span><span class='line'>  rootElement
+</span><span class='line'>)</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class App extends Component {
+</span><span class='line'>  render() {
+</span><span class='line'>    // Injected by connect() call:
+</span><span class='line'>    const { dispatch, visibleTodos, visibilityFilter } = this.props;
+</span><span class='line'>    return (
+</span><span class='line'>      &lt;div&gt;
+</span><span class='line'>        &lt;AddTodo
+</span><span class='line'>          onAddClick={text =&gt;
+</span><span class='line'>            dispatch(addTodo(text))
+</span><span class='line'>          } /&gt;
+</span><span class='line'>        &lt;TodoList
+</span><span class='line'>          todos={this.props.visibleTodos}
+</span><span class='line'>          onTodoClick={index =&gt;
+</span><span class='line'>            dispatch(completeTodo(index))
+</span><span class='line'>          } /&gt;
+</span><span class='line'>        &lt;Footer
+</span><span class='line'>          filter={visibilityFilter}
+</span><span class='line'>          onFilterChange={nextFilter =&gt;
+</span><span class='line'>            dispatch(setVisibilityFilter(nextFilter))
+</span><span class='line'>          } /&gt;
+</span><span class='line'>      &lt;/div&gt;
+</span><span class='line'>    );
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>// Which props do we want to inject, given the global state?
+</span><span class='line'>function select(state) {
+</span><span class='line'>  return {
+</span><span class='line'>    visibleTodos: selectTodos(state.todos, state.visibilityFilter),
+</span><span class='line'>    visibilityFilter: state.visibilityFilter
+</span><span class='line'>  };
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>// Wrap the component to inject dispatch and state into it
+</span><span class='line'>export default connect(select)(App);</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>异步action 及 middleware</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>                                                                                  ┌──────────────┐
+</span><span class='line'>                    ┌─────────────┐                                           ┌──▶│ subReducer 1 │
+</span><span class='line'>               ┌───▶│Middleware 1 │                                           │   └──────────────┘
+</span><span class='line'>               │    └─────────────┘                                           │           │       
+</span><span class='line'>               │           │                                                  │           ▼       
+</span><span class='line'>┌─────────────┐    │           │              ┌───────────────┐    ┌──────────┐   │   ┌──────────────┐
+</span><span class='line'>│   action'   │────┘           ▼          ┌──▶│store.dispatch │───▶│ reducer  │───┘   │ subReducer m │
+</span><span class='line'>└─────────────┘         ┌─────────────┐   │   └───────────────┘    └──────────┘       └──────────────┘
+</span><span class='line'>                    │Middleware n │   │                                                   │       
+</span><span class='line'>                    └─────────────┘   │                                                   │       
+</span><span class='line'>                           │          │                                                   ▼       
+</span><span class='line'>                           │          │                                           ┌──────────────┐
+</span><span class='line'>                           └──────────┘                                           │    state     │
+</span><span class='line'>                           plain action                                           └──────────────┘</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过使用指定的 middleware，action creator 除了返回 action 对象外还可以返回函数。这时，这个 action creator 就成为了 thunk。</p>
+
+<p>当 action creator 返回函数时，这个函数会被 Redux Thunk middleware 执行。这个函数并不需要保持纯净；它还可以带有副作用，包括执行异步 API 请求。这个函数还可以 dispatch action，就像 dispatch 前面定义的同步 action 一样。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import thunkMiddleware from 'redux-thunk';
+</span><span class='line'>import createLogger from 'redux-logger';
+</span><span class='line'>import { createStore, applyMiddleware } from 'redux';
+</span><span class='line'>import { selectReddit, fetchPosts } from './actions';
+</span><span class='line'>import rootReducer from './reducers';
+</span><span class='line'>
+</span><span class='line'>const loggerMiddleware = createLogger();
+</span><span class='line'>
+</span><span class='line'>const createStoreWithMiddleware = applyMiddleware(
+</span><span class='line'>  thunkMiddleware, // 允许我们 dispatch() 函数
+</span><span class='line'>  loggerMiddleware // 一个很便捷的 middleware，用来打印 action 日志
+</span><span class='line'>)(createStore);
+</span><span class='line'>
+</span><span class='line'>const store = createStoreWithMiddleware(rootReducer);
+</span><span class='line'>
+</span><span class='line'>store.dispatch(selectReddit('reactjs'));
+</span><span class='line'>store.dispatch(fetchPosts('reactjs')).then(() =&gt;
+</span><span class='line'>  console.log(store.getState())
+</span><span class='line'>);</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export function fetchPosts(reddit) {
+</span><span class='line'>
+</span><span class='line'>  // Thunk middleware 知道如何处理函数。
+</span><span class='line'>  // 这里把 dispatch 方法通过参数的形式参给函数，
+</span><span class='line'>  // 以此来让它自己也能 dispatch action。
+</span><span class='line'>
+</span><span class='line'>  return function (dispatch) {
+</span><span class='line'>
+</span><span class='line'>    // 首次 dispatch：更新应用的 state 来通知
+</span><span class='line'>    // API 请求发起了。
+</span><span class='line'>
+</span><span class='line'>    dispatch(requestPosts(reddit));
+</span><span class='line'>
+</span><span class='line'>    // thunk middleware 调用的函数可以有返回值，
+</span><span class='line'>    // 它会被当作 dispatch 方法的返回值传递。
+</span><span class='line'>
+</span><span class='line'>    // 这个案例中，我们返回一个等待处理的 promise。
+</span><span class='line'>    // 这并不是 redux middleware 所必须的，但是我们的一个约定。
+</span><span class='line'>
+</span><span class='line'>    return fetch(`http://www.reddit.com/r/${reddit}.json`)
+</span><span class='line'>      .then(response =&gt; response.json())
+</span><span class='line'>      .then(json =&gt;
+</span><span class='line'>
+</span><span class='line'>        // 可以多次 dispatch！
+</span><span class='line'>        // 这里，使用 API 请求结果来更新应用的 state。
+</span><span class='line'>
+</span><span class='line'>        dispatch(receivePosts(reddit, json))
+</span><span class='line'>      );
+</span><span class='line'>
+</span><span class='line'>      // 在实际应用中，还需要
+</span><span class='line'>      // 捕获网络请求的异常。
+</span><span class='line'>  };
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>redux-thunk 支持异步的 middleware 包装了 store 的 dispatch() 方法，以此来让你 dispatch 一些除了 action 以外的其他内容，如函数。你所使用的任何 middleware 都可以以自己的方式解释你 dispatch 的任何内容，并继续传递 actions 给下一个 middleware。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function thunkMiddleware(_ref) {
+</span><span class='line'>  var dispatch = _ref.dispatch;
+</span><span class='line'>  var getState = _ref.getState;
+</span><span class='line'>
+</span><span class='line'>  return function (next) {
+</span><span class='line'>    return function (action) {
+</span><span class='line'>      return typeof action === 'function' ? action(dispatch, getState) : next(action);
+</span><span class='line'>    };
+</span><span class='line'>  };
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web Socket]]></title>
