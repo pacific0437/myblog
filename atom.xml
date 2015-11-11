@@ -4,7 +4,7 @@
   <title><![CDATA[Ashley's Blog]]></title>
   <link href="http://pacific0437.github.io/myblog/atom.xml" rel="self"/>
   <link href="http://pacific0437.github.io/myblog/"/>
-  <updated>2015-11-12T01:05:17+08:00</updated>
+  <updated>2015-11-12T01:08:36+08:00</updated>
   <id>http://pacific0437.github.io/myblog/</id>
   <author>
     <name><![CDATA[Ashley Yang]]></name>
@@ -18,9 +18,7 @@
     <link href="http://pacific0437.github.io/myblog/blog/redux/"/>
     <updated>2015-11-11T21:04:32+08:00</updated>
     <id>http://pacific0437.github.io/myblog/blog/redux</id>
-    <content type="html"><![CDATA[<h1>Redux</h1>
-
-<h3>Redux 三大原则</h3>
+    <content type="html"><![CDATA[<h3>Redux 三大原则</h3>
 
 <ul>
 <li>单一数据源。 整个应用的 state 被储存在一棵 object tree 中，它只有一个单一的 store 。</li>
